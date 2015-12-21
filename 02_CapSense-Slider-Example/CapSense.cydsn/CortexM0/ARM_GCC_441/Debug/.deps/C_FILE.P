@@ -1,0 +1,54 @@
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/CortexM0/ARM_GCC_441/Debug/main.o : C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_CSD_Clk1.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_CSD_Clk2.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_CSHL.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_SMS.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_Sns_aliases.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_TunerHelper.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Clock.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CyFlash.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CyLib.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/PWM.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_GreenLED.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_GreenLED_aliases.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_RedLED.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_RedLED_aliases.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/core_cm0.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cyPm.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cydevice_trm.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cyfitter.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cypins.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cytypes.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/project.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/device.h C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/main.c 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_CSD_Clk1.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_CSD_Clk2.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_CSHL.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_SMS.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_Sns_aliases.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CapSense_TunerHelper.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Clock.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CyFlash.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/PWM.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_GreenLED.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_GreenLED_aliases.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_RedLED.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/Pin_RedLED_aliases.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/core_cm0.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cyPm.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cypins.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/Generated_Source/PSoC4/project.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/device.h : 
+
+C:/Users/gagan/Desktop/CapSense/CapSense.cydsn/main.c : 
+

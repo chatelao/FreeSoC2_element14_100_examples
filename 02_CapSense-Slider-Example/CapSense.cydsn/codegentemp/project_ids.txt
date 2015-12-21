@@ -1,0 +1,6 @@
+C:\Users\hp\Dropbox\Privat\__github\FreeSoC2_element14_100_examples\02_CapSense-Slider-Example\CapSense.cydsn\CapSense.cyprj|93a4009a-a0c7-4eeb-9b4d-c4e81390ee8c
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|8ae6c134-9610-46e5-8a87-101e0c3caf35
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|31000bbd-57d5-4c42-ae19-eaef5ad3ade4
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|fd375012-7aa3-49c1-9d32-38ea003f20b8
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|a8a3ce9d-7fb0-4e19-b84e-2187ed68c8b6
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5240a518-422f-47a5-94ce-88bd2c87869d

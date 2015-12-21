@@ -1,0 +1,12 @@
+dont_use_io iocell 1 0
+dont_use_io iocell 1 1
+set_location "\PWM:PWMUDB:runmode_enable\" macrocell 0 5 0 1
+set_location "\PWM:PWMUDB:sP8:pwmdp:u0\" datapathcell 0 5 2 
+set_location "\PWM:PWMUDB:genblk8:stsreg\" statusicell 0 5 4 
+set_location "\PWM:PWMUDB:status_2\" macrocell 0 5 0 0
+set_location "Net_176" macrocell 0 5 0 2
+set_location "\PWM:PWMUDB:prevCompare1\" macrocell 0 5 0 3
+set_location "\PWM:PWMUDB:status_0\" macrocell 0 5 1 0
+set_location "\PWM:PWMUDB:genblk1:ctrlreg\" controlcell 0 5 6 
+set_io "Pin_BlueLED(0)" iocell 6 7
+set_location "ClockBlock" clockblockcell -1 -1 0

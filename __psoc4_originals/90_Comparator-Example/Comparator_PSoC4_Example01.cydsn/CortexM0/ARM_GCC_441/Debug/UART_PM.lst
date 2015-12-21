@@ -1,0 +1,1257 @@
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"UART_PM.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 C8000000 		.text
+  19      02006A00 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.global	UART_backup
+  23              		.bss
+  24              		.align	2
+  25              		.type	UART_backup, %object
+  26              		.size	UART_backup, 1
+  27              	UART_backup:
+  28 0000 00       		.space	1
+  29 0001 000000   		.section	.text.UART_Sleep,"ax",%progbits
+  30              		.align	2
+  31              		.global	UART_Sleep
+  32              		.code	16
+  33              		.thumb_func
+  34              		.type	UART_Sleep, %function
+  35              	UART_Sleep:
+  36              	.LFB0:
+  37              		.file 1 ".\\Generated_Source\\PSoC4\\UART_PM.c"
+   1:.\Generated_Source\PSoC4/UART_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/UART_PM.c **** * File Name: UART_PM.c
+   3:.\Generated_Source\PSoC4/UART_PM.c **** * Version 1.10
+   4:.\Generated_Source\PSoC4/UART_PM.c **** *
+   5:.\Generated_Source\PSoC4/UART_PM.c **** * Description:
+   6:.\Generated_Source\PSoC4/UART_PM.c **** *  This file provides the source code to the Power Management support for
+   7:.\Generated_Source\PSoC4/UART_PM.c **** *  the SCB Component.
+   8:.\Generated_Source\PSoC4/UART_PM.c **** *
+   9:.\Generated_Source\PSoC4/UART_PM.c **** * Note:
+  10:.\Generated_Source\PSoC4/UART_PM.c **** *
+  11:.\Generated_Source\PSoC4/UART_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC4/UART_PM.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/UART_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/UART_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/UART_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/UART_PM.c **** *******************************************************************************/
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 2
+
+
+  17:.\Generated_Source\PSoC4/UART_PM.c **** 
+  18:.\Generated_Source\PSoC4/UART_PM.c **** #include "UART.h"
+  19:.\Generated_Source\PSoC4/UART_PM.c **** #include "UART_PVT.h"
+  20:.\Generated_Source\PSoC4/UART_PM.c **** 
+  21:.\Generated_Source\PSoC4/UART_PM.c **** #if(UART_SCB_MODE_I2C_INC)
+  22:.\Generated_Source\PSoC4/UART_PM.c ****     #include "UART_I2C_PVT.h"
+  23:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_I2C_INC) */
+  24:.\Generated_Source\PSoC4/UART_PM.c **** 
+  25:.\Generated_Source\PSoC4/UART_PM.c **** #if(UART_SCB_MODE_EZI2C_INC)
+  26:.\Generated_Source\PSoC4/UART_PM.c ****     #include "UART_EZI2C_PVT.h"
+  27:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_EZI2C_INC) */
+  28:.\Generated_Source\PSoC4/UART_PM.c **** 
+  29:.\Generated_Source\PSoC4/UART_PM.c **** #if(UART_SCB_MODE_SPI_INC || UART_SCB_MODE_UART_INC)
+  30:.\Generated_Source\PSoC4/UART_PM.c ****     #include "UART_SPI_UART_PVT.h"
+  31:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_SPI_INC || UART_SCB_MODE_UART_INC) */
+  32:.\Generated_Source\PSoC4/UART_PM.c **** 
+  33:.\Generated_Source\PSoC4/UART_PM.c **** 
+  34:.\Generated_Source\PSoC4/UART_PM.c **** /***************************************
+  35:.\Generated_Source\PSoC4/UART_PM.c **** *   Backup Structure declaration
+  36:.\Generated_Source\PSoC4/UART_PM.c **** ***************************************/
+  37:.\Generated_Source\PSoC4/UART_PM.c **** 
+  38:.\Generated_Source\PSoC4/UART_PM.c **** UART_BACKUP_STRUCT UART_backup =
+  39:.\Generated_Source\PSoC4/UART_PM.c **** {
+  40:.\Generated_Source\PSoC4/UART_PM.c ****     0u, /* enableState */
+  41:.\Generated_Source\PSoC4/UART_PM.c **** };
+  42:.\Generated_Source\PSoC4/UART_PM.c **** 
+  43:.\Generated_Source\PSoC4/UART_PM.c **** 
+  44:.\Generated_Source\PSoC4/UART_PM.c **** /*******************************************************************************
+  45:.\Generated_Source\PSoC4/UART_PM.c **** * Function Name: UART_Sleep
+  46:.\Generated_Source\PSoC4/UART_PM.c **** ********************************************************************************
+  47:.\Generated_Source\PSoC4/UART_PM.c **** *
+  48:.\Generated_Source\PSoC4/UART_PM.c **** * Summary:
+  49:.\Generated_Source\PSoC4/UART_PM.c **** *  Calls SaveConfig function fucntion for selected mode.
+  50:.\Generated_Source\PSoC4/UART_PM.c **** *
+  51:.\Generated_Source\PSoC4/UART_PM.c **** * Parameters:
+  52:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+  53:.\Generated_Source\PSoC4/UART_PM.c **** *
+  54:.\Generated_Source\PSoC4/UART_PM.c **** * Return:
+  55:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+  56:.\Generated_Source\PSoC4/UART_PM.c **** *
+  57:.\Generated_Source\PSoC4/UART_PM.c **** *******************************************************************************/
+  58:.\Generated_Source\PSoC4/UART_PM.c **** void UART_Sleep(void)
+  59:.\Generated_Source\PSoC4/UART_PM.c **** {
+  38              		.loc 1 59 0
+  39              		.cfi_startproc
+  40 0000 80B5     		push	{r7, lr}
+  41              	.LCFI0:
+  42              		.cfi_def_cfa_offset 8
+  43              		.cfi_offset 7, -8
+  44              		.cfi_offset 14, -4
+  45 0002 00AF     		add	r7, sp, #0
+  46              	.LCFI1:
+  47              		.cfi_def_cfa_register 7
+  60:.\Generated_Source\PSoC4/UART_PM.c **** #if(UART_SCB_MODE_UNCONFIG_CONST_CFG)
+  61:.\Generated_Source\PSoC4/UART_PM.c **** 
+  62:.\Generated_Source\PSoC4/UART_PM.c ****     if(0u != UART_scbEnableWake)
+  63:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 3
+
+
+  64:.\Generated_Source\PSoC4/UART_PM.c ****         if(UART_SCB_MODE_I2C_RUNTM_CFG)
+  65:.\Generated_Source\PSoC4/UART_PM.c ****         {
+  66:.\Generated_Source\PSoC4/UART_PM.c ****             UART_I2CSaveConfig();
+  67:.\Generated_Source\PSoC4/UART_PM.c ****         }
+  68:.\Generated_Source\PSoC4/UART_PM.c ****         else if(UART_SCB_MODE_SPI_RUNTM_CFG)
+  69:.\Generated_Source\PSoC4/UART_PM.c ****         {
+  70:.\Generated_Source\PSoC4/UART_PM.c ****             UART_SpiSaveConfig();
+  71:.\Generated_Source\PSoC4/UART_PM.c ****         }
+  72:.\Generated_Source\PSoC4/UART_PM.c ****         else if(UART_SCB_MODE_UART_RUNTM_CFG)
+  73:.\Generated_Source\PSoC4/UART_PM.c ****         {
+  74:.\Generated_Source\PSoC4/UART_PM.c ****             UART_UartSaveConfig();
+  75:.\Generated_Source\PSoC4/UART_PM.c ****         }
+  76:.\Generated_Source\PSoC4/UART_PM.c ****         else if(UART_SCB_MODE_EZI2C_RUNTM_CFG)
+  77:.\Generated_Source\PSoC4/UART_PM.c ****         {
+  78:.\Generated_Source\PSoC4/UART_PM.c ****             UART_EzI2CSaveConfig();
+  79:.\Generated_Source\PSoC4/UART_PM.c ****         }
+  80:.\Generated_Source\PSoC4/UART_PM.c ****         else
+  81:.\Generated_Source\PSoC4/UART_PM.c ****         {
+  82:.\Generated_Source\PSoC4/UART_PM.c ****             /* Unknown mode: do nothing */
+  83:.\Generated_Source\PSoC4/UART_PM.c ****         }
+  84:.\Generated_Source\PSoC4/UART_PM.c ****     }
+  85:.\Generated_Source\PSoC4/UART_PM.c ****     else
+  86:.\Generated_Source\PSoC4/UART_PM.c ****     {
+  87:.\Generated_Source\PSoC4/UART_PM.c ****         UART_backup.enableState = (uint8) UART_GET_CTRL_ENABLED;
+  88:.\Generated_Source\PSoC4/UART_PM.c ****         
+  89:.\Generated_Source\PSoC4/UART_PM.c ****         if(0u != UART_backup.enableState)
+  90:.\Generated_Source\PSoC4/UART_PM.c ****         {
+  91:.\Generated_Source\PSoC4/UART_PM.c ****             UART_Stop();
+  92:.\Generated_Source\PSoC4/UART_PM.c ****         }
+  93:.\Generated_Source\PSoC4/UART_PM.c ****     }
+  94:.\Generated_Source\PSoC4/UART_PM.c ****     
+  95:.\Generated_Source\PSoC4/UART_PM.c ****     UART_DisableTxPinsInputBuffer();
+  96:.\Generated_Source\PSoC4/UART_PM.c ****     
+  97:.\Generated_Source\PSoC4/UART_PM.c **** #else
+  98:.\Generated_Source\PSoC4/UART_PM.c ****     
+  99:.\Generated_Source\PSoC4/UART_PM.c ****     #if defined (UART_I2C_WAKE_ENABLE_CONST) && (UART_I2C_WAKE_ENABLE_CONST)
+ 100:.\Generated_Source\PSoC4/UART_PM.c ****         UART_I2CSaveConfig();
+ 101:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 102:.\Generated_Source\PSoC4/UART_PM.c ****     #elif defined (UART_SPI_WAKE_ENABLE_CONST) && (UART_SPI_WAKE_ENABLE_CONST)
+ 103:.\Generated_Source\PSoC4/UART_PM.c ****         UART_SpiSaveConfig();
+ 104:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 105:.\Generated_Source\PSoC4/UART_PM.c ****     #elif defined (UART_UART_WAKE_ENABLE_CONST) && (UART_UART_WAKE_ENABLE_CONST)
+ 106:.\Generated_Source\PSoC4/UART_PM.c ****         UART_UartSaveConfig();
+ 107:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 108:.\Generated_Source\PSoC4/UART_PM.c ****     #elif defined (UART_EZI2C_WAKE_ENABLE_CONST) && (UART_EZI2C_WAKE_ENABLE_CONST)
+ 109:.\Generated_Source\PSoC4/UART_PM.c ****         UART_EzI2CSaveConfig();
+ 110:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 111:.\Generated_Source\PSoC4/UART_PM.c ****     #else
+ 112:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 113:.\Generated_Source\PSoC4/UART_PM.c ****         UART_backup.enableState = (uint8) UART_GET_CTRL_ENABLED;
+  48              		.loc 1 113 0
+  49 0004 074B     		ldr	r3, .L4
+  50 0006 1B68     		ldr	r3, [r3]
+  51 0008 DA0F     		lsr	r2, r3, #31
+  52 000a 074B     		ldr	r3, .L4+4
+  53 000c 1A70     		strb	r2, [r3]
+ 114:.\Generated_Source\PSoC4/UART_PM.c ****         
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 4
+
+
+ 115:.\Generated_Source\PSoC4/UART_PM.c ****         /* Check enable state */
+ 116:.\Generated_Source\PSoC4/UART_PM.c ****         if(0u != UART_backup.enableState)
+  54              		.loc 1 116 0
+  55 000e 064B     		ldr	r3, .L4+4
+  56 0010 1B78     		ldrb	r3, [r3]
+  57 0012 002B     		cmp	r3, #0
+  58 0014 01D0     		beq	.L2
+ 117:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 118:.\Generated_Source\PSoC4/UART_PM.c ****             UART_Stop();
+  59              		.loc 1 118 0
+  60 0016 FFF7FEFF 		bl	UART_Stop
+  61              	.L2:
+ 119:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 120:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 121:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* defined (UART_SCB_MODE_I2C_CONST_CFG) && (UART_I2C_WAKE_ENABLE_CONST) */
+ 122:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 123:.\Generated_Source\PSoC4/UART_PM.c ****     UART_DisableTxPinsInputBuffer();
+  62              		.loc 1 123 0
+  63 001a FFF7FEFF 		bl	UART_DisableTxPinsInputBuffer
+ 124:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 125:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 126:.\Generated_Source\PSoC4/UART_PM.c **** }
+  64              		.loc 1 126 0
+  65 001e BD46     		mov	sp, r7
+  66              		@ sp needed for prologue
+  67 0020 80BD     		pop	{r7, pc}
+  68              	.L5:
+  69 0022 C046     		.align	2
+  70              	.L4:
+  71 0024 00000640 		.word	1074135040
+  72 0028 00000000 		.word	UART_backup
+  73              		.cfi_endproc
+  74              	.LFE0:
+  75              		.size	UART_Sleep, .-UART_Sleep
+  76              		.section	.text.UART_Wakeup,"ax",%progbits
+  77              		.align	2
+  78              		.global	UART_Wakeup
+  79              		.code	16
+  80              		.thumb_func
+  81              		.type	UART_Wakeup, %function
+  82              	UART_Wakeup:
+  83              	.LFB1:
+ 127:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 128:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 129:.\Generated_Source\PSoC4/UART_PM.c **** /*******************************************************************************
+ 130:.\Generated_Source\PSoC4/UART_PM.c **** * Function Name: UART_Wakeup
+ 131:.\Generated_Source\PSoC4/UART_PM.c **** ********************************************************************************
+ 132:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 133:.\Generated_Source\PSoC4/UART_PM.c **** * Summary:
+ 134:.\Generated_Source\PSoC4/UART_PM.c **** *  Calls RestoreConfig function fucntion for selected mode.
+ 135:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 136:.\Generated_Source\PSoC4/UART_PM.c **** * Parameters:
+ 137:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+ 138:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 139:.\Generated_Source\PSoC4/UART_PM.c **** * Return:
+ 140:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+ 141:.\Generated_Source\PSoC4/UART_PM.c **** *
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 5
+
+
+ 142:.\Generated_Source\PSoC4/UART_PM.c **** *******************************************************************************/
+ 143:.\Generated_Source\PSoC4/UART_PM.c **** void UART_Wakeup(void)
+ 144:.\Generated_Source\PSoC4/UART_PM.c **** {
+  84              		.loc 1 144 0
+  85              		.cfi_startproc
+  86 0000 80B5     		push	{r7, lr}
+  87              	.LCFI2:
+  88              		.cfi_def_cfa_offset 8
+  89              		.cfi_offset 7, -8
+  90              		.cfi_offset 14, -4
+  91 0002 00AF     		add	r7, sp, #0
+  92              	.LCFI3:
+  93              		.cfi_def_cfa_register 7
+ 145:.\Generated_Source\PSoC4/UART_PM.c **** #if(UART_SCB_MODE_UNCONFIG_CONST_CFG)
+ 146:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 147:.\Generated_Source\PSoC4/UART_PM.c ****     UART_EnableTxPinsInputBuffer();
+ 148:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 149:.\Generated_Source\PSoC4/UART_PM.c ****     if(0u != UART_scbEnableWake)
+ 150:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ 151:.\Generated_Source\PSoC4/UART_PM.c ****         if(UART_SCB_MODE_I2C_RUNTM_CFG)
+ 152:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 153:.\Generated_Source\PSoC4/UART_PM.c ****             UART_I2CRestoreConfig();
+ 154:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 155:.\Generated_Source\PSoC4/UART_PM.c ****         else if(UART_SCB_MODE_SPI_RUNTM_CFG)
+ 156:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 157:.\Generated_Source\PSoC4/UART_PM.c ****             UART_SpiRestoreConfig();
+ 158:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 159:.\Generated_Source\PSoC4/UART_PM.c ****         else if(UART_SCB_MODE_UART_RUNTM_CFG)
+ 160:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 161:.\Generated_Source\PSoC4/UART_PM.c ****             UART_UartRestoreConfig();
+ 162:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 163:.\Generated_Source\PSoC4/UART_PM.c ****         else if(UART_SCB_MODE_EZI2C_RUNTM_CFG)
+ 164:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 165:.\Generated_Source\PSoC4/UART_PM.c ****             UART_EzI2CRestoreConfig();
+ 166:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 167:.\Generated_Source\PSoC4/UART_PM.c ****         else
+ 168:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 169:.\Generated_Source\PSoC4/UART_PM.c ****             /* Unknown mode: do nothing */
+ 170:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 171:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 172:.\Generated_Source\PSoC4/UART_PM.c ****     else
+ 173:.\Generated_Source\PSoC4/UART_PM.c ****     {    
+ 174:.\Generated_Source\PSoC4/UART_PM.c ****         /* Restore enable state */
+ 175:.\Generated_Source\PSoC4/UART_PM.c ****         if(0u != UART_backup.enableState)
+ 176:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 177:.\Generated_Source\PSoC4/UART_PM.c ****             UART_Enable();
+ 178:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 179:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 180:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 181:.\Generated_Source\PSoC4/UART_PM.c **** #else
+ 182:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 183:.\Generated_Source\PSoC4/UART_PM.c ****     UART_EnableTxPinsInputBuffer();
+  94              		.loc 1 183 0
+  95 0004 FFF7FEFF 		bl	UART_EnableTxPinsInputBuffer
+ 184:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 185:.\Generated_Source\PSoC4/UART_PM.c ****     #if defined (UART_I2C_WAKE_ENABLE_CONST) && (UART_I2C_WAKE_ENABLE_CONST)
+ 186:.\Generated_Source\PSoC4/UART_PM.c ****         UART_I2CRestoreConfig();
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 6
+
+
+ 187:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 188:.\Generated_Source\PSoC4/UART_PM.c ****     #elif defined (UART_SPI_WAKE_ENABLE_CONST) && (UART_SPI_WAKE_ENABLE_CONST)
+ 189:.\Generated_Source\PSoC4/UART_PM.c ****         UART_SpiRestoreConfig();
+ 190:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 191:.\Generated_Source\PSoC4/UART_PM.c ****     #elif defined (UART_UART_WAKE_ENABLE_CONST) && (UART_UART_WAKE_ENABLE_CONST)
+ 192:.\Generated_Source\PSoC4/UART_PM.c ****         UART_UartRestoreConfig();
+ 193:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 194:.\Generated_Source\PSoC4/UART_PM.c ****     #elif defined (UART_EZI2C_WAKE_ENABLE_CONST) && (UART_EZI2C_WAKE_ENABLE_CONST)
+ 195:.\Generated_Source\PSoC4/UART_PM.c ****         UART_EzI2CRestoreConfig();
+ 196:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 197:.\Generated_Source\PSoC4/UART_PM.c ****     #else
+ 198:.\Generated_Source\PSoC4/UART_PM.c ****         /* Check enable state */
+ 199:.\Generated_Source\PSoC4/UART_PM.c ****         if(0u != UART_backup.enableState)
+  96              		.loc 1 199 0
+  97 0008 034B     		ldr	r3, .L9
+  98 000a 1B78     		ldrb	r3, [r3]
+  99 000c 002B     		cmp	r3, #0
+ 100 000e 01D0     		beq	.L8
+ 200:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 201:.\Generated_Source\PSoC4/UART_PM.c ****             UART_Enable();
+ 101              		.loc 1 201 0
+ 102 0010 FFF7FEFF 		bl	UART_Enable
+ 103              	.L8:
+ 202:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 203:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 204:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_I2C_WAKE_ENABLE_CONST) */
+ 205:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 206:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 207:.\Generated_Source\PSoC4/UART_PM.c **** }
+ 104              		.loc 1 207 0
+ 105 0014 BD46     		mov	sp, r7
+ 106              		@ sp needed for prologue
+ 107 0016 80BD     		pop	{r7, pc}
+ 108              	.L10:
+ 109              		.align	2
+ 110              	.L9:
+ 111 0018 00000000 		.word	UART_backup
+ 112              		.cfi_endproc
+ 113              	.LFE1:
+ 114              		.size	UART_Wakeup, .-UART_Wakeup
+ 115              		.section	.text.UART_DisableTxPinsInputBuffer,"ax",%progbits
+ 116              		.align	2
+ 117              		.global	UART_DisableTxPinsInputBuffer
+ 118              		.code	16
+ 119              		.thumb_func
+ 120              		.type	UART_DisableTxPinsInputBuffer, %function
+ 121              	UART_DisableTxPinsInputBuffer:
+ 122              	.LFB2:
+ 208:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 209:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 210:.\Generated_Source\PSoC4/UART_PM.c **** /*******************************************************************************
+ 211:.\Generated_Source\PSoC4/UART_PM.c **** * Function Name: UART_DisableTxPinsInputBuffer
+ 212:.\Generated_Source\PSoC4/UART_PM.c **** ********************************************************************************
+ 213:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 214:.\Generated_Source\PSoC4/UART_PM.c **** * Summary:
+ 215:.\Generated_Source\PSoC4/UART_PM.c **** *  Disables input buffers for TX pins. This action removes leakage current while
+ 216:.\Generated_Source\PSoC4/UART_PM.c **** *  low power mode (Cypress ID 149635).
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 7
+
+
+ 217:.\Generated_Source\PSoC4/UART_PM.c **** *   SCB mode is I2C and EZI2C: bus is pulled-up. Leave pins as it is.
+ 218:.\Generated_Source\PSoC4/UART_PM.c **** *   SCB mode SPI:
+ 219:.\Generated_Source\PSoC4/UART_PM.c **** *     Slave  - disable input buffer for MISO pin.
+ 220:.\Generated_Source\PSoC4/UART_PM.c **** *     Master - disable input buffer for all pins.
+ 221:.\Generated_Source\PSoC4/UART_PM.c **** *   SCB mode SmartCard: 
+ 222:.\Generated_Source\PSoC4/UART_PM.c **** *     Standard and IrDA - disable input buffer for TX pin.
+ 223:.\Generated_Source\PSoC4/UART_PM.c **** *     SmartCard - RX_TX pin is pulled-up. Leave pin as it is.
+ 224:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 225:.\Generated_Source\PSoC4/UART_PM.c **** * Parameters:
+ 226:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+ 227:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 228:.\Generated_Source\PSoC4/UART_PM.c **** * Return:
+ 229:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+ 230:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 231:.\Generated_Source\PSoC4/UART_PM.c **** *******************************************************************************/
+ 232:.\Generated_Source\PSoC4/UART_PM.c **** void UART_DisableTxPinsInputBuffer(void)
+ 233:.\Generated_Source\PSoC4/UART_PM.c **** {
+ 123              		.loc 1 233 0
+ 124              		.cfi_startproc
+ 125 0000 80B5     		push	{r7, lr}
+ 126              	.LCFI4:
+ 127              		.cfi_def_cfa_offset 8
+ 128              		.cfi_offset 7, -8
+ 129              		.cfi_offset 14, -4
+ 130 0002 00AF     		add	r7, sp, #0
+ 131              	.LCFI5:
+ 132              		.cfi_def_cfa_register 7
+ 234:.\Generated_Source\PSoC4/UART_PM.c **** #if(UART_SCB_MODE_UNCONFIG_CONST_CFG)
+ 235:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 236:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is I2C and EZI2C: bus is pulled-up. Does nothing */
+ 237:.\Generated_Source\PSoC4/UART_PM.c ****        
+ 238:.\Generated_Source\PSoC4/UART_PM.c ****     if(UART_SCB_MODE_SPI_RUNTM_CFG)
+ 239:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ 240:.\Generated_Source\PSoC4/UART_PM.c ****         if(0u != (UART_SPI_CTRL_REG & UART_SPI_CTRL_MASTER))
+ 241:.\Generated_Source\PSoC4/UART_PM.c ****         /* SPI Master */
+ 242:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 243:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MOSI_SCL_RX_WAKE_PIN)
+ 244:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_mosi_i2c_scl_uart_rx_wake_INP_DIS |= \
+ 245:.\Generated_Source\PSoC4/UART_PM.c ****                                                                 UART_spi_mosi_i2c_scl_uart_rx_wake_
+ 246:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MOSI_SCL_RX_WAKE_PIN) */
+ 247:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 248:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MOSI_SCL_RX_PIN)
+ 249:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_mosi_i2c_scl_uart_rx_INP_DIS |= UART_spi_mosi_i2c_scl_uart_rx_MASK;
+ 250:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MOSI_SCL_RX_PIN) */
+ 251:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 252:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MISO_SDA_TX_PIN)
+ 253:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_miso_i2c_sda_uart_tx_INP_DIS |= UART_spi_miso_i2c_sda_uart_tx_MASK;
+ 254:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MISO_SDA_TX_PIN_PIN) */
+ 255:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 256:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SCLK_PIN)
+ 257:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_sclk_INP_DIS |= UART_spi_sclk_MASK;
+ 258:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SCLK_PIN) */
+ 259:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 260:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS0_PIN)
+ 261:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss0_INP_DIS |= UART_spi_ss0_MASK;
+ 262:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS1_PIN) */
+ 263:.\Generated_Source\PSoC4/UART_PM.c **** 
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 8
+
+
+ 264:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS1_PIN)
+ 265:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss1_INP_DIS |= UART_spi_ss1_MASK;
+ 266:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS1_PIN) */
+ 267:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 268:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS2_PIN)
+ 269:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss2_INP_DIS |= UART_spi_ss2_MASK;
+ 270:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS2_PIN) */
+ 271:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 272:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS3_PIN)
+ 273:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss3_INP_DIS |= UART_spi_ss3_MASK;
+ 274:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS3_PIN) */
+ 275:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 276:.\Generated_Source\PSoC4/UART_PM.c ****         else
+ 277:.\Generated_Source\PSoC4/UART_PM.c ****         /* SPI Slave */
+ 278:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 279:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MISO_SDA_TX_PIN)
+ 280:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_miso_i2c_sda_uart_tx_INP_DIS |= UART_spi_miso_i2c_sda_uart_tx_MASK;
+ 281:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MISO_SDA_TX_PIN_PIN) */
+ 282:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 283:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 284:.\Generated_Source\PSoC4/UART_PM.c ****     else if (UART_SCB_MODE_UART_RUNTM_CFG)
+ 285:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ 286:.\Generated_Source\PSoC4/UART_PM.c ****         if(UART_UART_CTRL_MODE_UART_SMARTCARD != 
+ 287:.\Generated_Source\PSoC4/UART_PM.c ****             (UART_UART_CTRL_REG & UART_UART_CTRL_MODE_MASK))
+ 288:.\Generated_Source\PSoC4/UART_PM.c ****         /* UART Standard or IrDA */
+ 289:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 290:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MISO_SDA_TX_PIN)
+ 291:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_miso_i2c_sda_uart_tx_INP_DIS |= UART_spi_miso_i2c_sda_uart_tx_MASK;
+ 292:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MISO_SDA_TX_PIN_PIN) */
+ 293:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 294:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 295:.\Generated_Source\PSoC4/UART_PM.c ****     else
+ 296:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ 297:.\Generated_Source\PSoC4/UART_PM.c ****         /* Does nothing */
+ 298:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 299:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 300:.\Generated_Source\PSoC4/UART_PM.c **** #else
+ 301:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 302:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is I2C and EZI2C: bus is pulled-up. Does nothing */
+ 303:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 304:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is SPI Master */
+ 305:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_PINS)
+ 306:.\Generated_Source\PSoC4/UART_PM.c ****         UART_sclk_m_INP_DIS |= UART_sclk_m_MASK;
+ 307:.\Generated_Source\PSoC4/UART_PM.c ****         UART_mosi_m_INP_DIS |= UART_mosi_m_MASK;
+ 308:.\Generated_Source\PSoC4/UART_PM.c ****         UART_miso_m_INP_DIS |= UART_miso_m_MASK;
+ 309:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_PINS) */
+ 310:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 311:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS0_PIN)
+ 312:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss0_m_INP_DIS |= UART_ss0_m_MASK;
+ 313:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS0_PIN) */
+ 314:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 315:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS1_PIN)
+ 316:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss1_m_INP_DIS |= UART_ss1_m_MASK;
+ 317:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS1_PIN) */
+ 318:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 319:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS2_PIN)
+ 320:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss2_m_INP_DIS |= UART_ss2_m_MASK;
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 9
+
+
+ 321:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS2_PIN) */
+ 322:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 323:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS3_PIN)
+ 324:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss3_m_INP_DIS |= UART_ss3_m_MASK;
+ 325:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS3_PIN) */
+ 326:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 327:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is SPI Slave */
+ 328:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_SLAVE_PINS)
+ 329:.\Generated_Source\PSoC4/UART_PM.c ****         UART_miso_s_INP_DIS |= UART_miso_s_MASK;
+ 330:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_SLAVE_PINS) */
+ 331:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 332:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is UART */
+ 333:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_UART_TX_PIN)
+ 334:.\Generated_Source\PSoC4/UART_PM.c ****         UART_tx_INP_DIS |= UART_tx_MASK;
+ 133              		.loc 1 334 0
+ 134 0004 034B     		ldr	r3, .L13
+ 135 0006 034A     		ldr	r2, .L13
+ 136 0008 1168     		ldr	r1, [r2]
+ 137 000a 0222     		mov	r2, #2
+ 138 000c 0A43     		orr	r2, r2, r1
+ 139 000e 1A60     		str	r2, [r3]
+ 335:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_UART_TX_PIN) */
+ 336:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 337:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 338:.\Generated_Source\PSoC4/UART_PM.c **** }
+ 140              		.loc 1 338 0
+ 141 0010 BD46     		mov	sp, r7
+ 142              		@ sp needed for prologue
+ 143 0012 80BD     		pop	{r7, pc}
+ 144              	.L14:
+ 145              		.align	2
+ 146              	.L13:
+ 147 0014 18040440 		.word	1074005016
+ 148              		.cfi_endproc
+ 149              	.LFE2:
+ 150              		.size	UART_DisableTxPinsInputBuffer, .-UART_DisableTxPinsInputBuffer
+ 151              		.section	.text.UART_EnableTxPinsInputBuffer,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	UART_EnableTxPinsInputBuffer
+ 154              		.code	16
+ 155              		.thumb_func
+ 156              		.type	UART_EnableTxPinsInputBuffer, %function
+ 157              	UART_EnableTxPinsInputBuffer:
+ 158              	.LFB3:
+ 339:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 340:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 341:.\Generated_Source\PSoC4/UART_PM.c **** /*******************************************************************************
+ 342:.\Generated_Source\PSoC4/UART_PM.c **** * Function Name: UART_EnableTxPinsInputBuffer
+ 343:.\Generated_Source\PSoC4/UART_PM.c **** ********************************************************************************
+ 344:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 345:.\Generated_Source\PSoC4/UART_PM.c **** * Summary:
+ 346:.\Generated_Source\PSoC4/UART_PM.c **** *  Enables input buffers for TX pins. Restore changes done byte
+ 347:.\Generated_Source\PSoC4/UART_PM.c **** *UART_DisableTxPinsInputBuffer.
+ 348:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 349:.\Generated_Source\PSoC4/UART_PM.c **** * Parameters:
+ 350:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+ 351:.\Generated_Source\PSoC4/UART_PM.c **** *
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 10
+
+
+ 352:.\Generated_Source\PSoC4/UART_PM.c **** * Return:
+ 353:.\Generated_Source\PSoC4/UART_PM.c **** *  None
+ 354:.\Generated_Source\PSoC4/UART_PM.c **** *
+ 355:.\Generated_Source\PSoC4/UART_PM.c **** *******************************************************************************/
+ 356:.\Generated_Source\PSoC4/UART_PM.c **** void UART_EnableTxPinsInputBuffer(void)
+ 357:.\Generated_Source\PSoC4/UART_PM.c **** {
+ 159              		.loc 1 357 0
+ 160              		.cfi_startproc
+ 161 0000 80B5     		push	{r7, lr}
+ 162              	.LCFI6:
+ 163              		.cfi_def_cfa_offset 8
+ 164              		.cfi_offset 7, -8
+ 165              		.cfi_offset 14, -4
+ 166 0002 00AF     		add	r7, sp, #0
+ 167              	.LCFI7:
+ 168              		.cfi_def_cfa_register 7
+ 358:.\Generated_Source\PSoC4/UART_PM.c **** #if(UART_SCB_MODE_UNCONFIG_CONST_CFG)
+ 359:.\Generated_Source\PSoC4/UART_PM.c ****     if(UART_SCB_MODE_SPI_RUNTM_CFG)
+ 360:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ 361:.\Generated_Source\PSoC4/UART_PM.c ****         if(0u != (UART_SPI_CTRL_REG & UART_SPI_CTRL_MASTER))
+ 362:.\Generated_Source\PSoC4/UART_PM.c ****         /* SPI Master */
+ 363:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 364:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MOSI_SCL_RX_WAKE_PIN)
+ 365:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_mosi_i2c_scl_uart_rx_wake_INP_DIS &= \
+ 366:.\Generated_Source\PSoC4/UART_PM.c ****                                             (uint32) ~((uint32) UART_spi_mosi_i2c_scl_uart_rx_wake_
+ 367:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MOSI_SCL_RX_WAKE_PIN) */
+ 368:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 369:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MOSI_SCL_RX_PIN)
+ 370:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_mosi_i2c_scl_uart_rx_INP_DIS &= \
+ 371:.\Generated_Source\PSoC4/UART_PM.c ****                                             (uint32) ~((uint32) UART_spi_mosi_i2c_scl_uart_rx_MASK)
+ 372:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MOSI_SCL_RX_PIN) */
+ 373:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 374:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MISO_SDA_TX_PIN)
+ 375:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_miso_i2c_sda_uart_tx_INP_DIS &= \
+ 376:.\Generated_Source\PSoC4/UART_PM.c ****                                             (uint32) ~((uint32) UART_spi_miso_i2c_sda_uart_tx_MASK)
+ 377:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MISO_SDA_TX_PIN_PIN) */
+ 378:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 379:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SCLK_PIN)
+ 380:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_sclk_INP_DIS &= (uint32) ~((uint32) UART_spi_sclk_MASK);
+ 381:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SCLK_PIN) */
+ 382:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 383:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS0_PIN)
+ 384:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss0_INP_DIS &= (uint32) ~((uint32) UART_spi_ss0_MASK);
+ 385:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS1_PIN) */
+ 386:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 387:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS1_PIN)
+ 388:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss1_INP_DIS &= (uint32) ~((uint32) UART_spi_ss1_MASK);
+ 389:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS1_PIN) */
+ 390:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 391:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS2_PIN)
+ 392:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss2_INP_DIS &= (uint32) ~((uint32) UART_spi_ss2_MASK);
+ 393:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS2_PIN) */
+ 394:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 395:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_SS3_PIN)
+ 396:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_ss3_INP_DIS &= (uint32) ~((uint32) UART_spi_ss3_MASK);
+ 397:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_SS3_PIN) */
+ 398:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 11
+
+
+ 399:.\Generated_Source\PSoC4/UART_PM.c ****         else
+ 400:.\Generated_Source\PSoC4/UART_PM.c ****         /* SPI Slave */
+ 401:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 402:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MISO_SDA_TX_PIN)
+ 403:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_miso_i2c_sda_uart_tx_INP_DIS &= \
+ 404:.\Generated_Source\PSoC4/UART_PM.c ****                                                 (uint32) ~((uint32) UART_spi_miso_i2c_sda_uart_tx_M
+ 405:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MISO_SDA_TX_PIN_PIN) */
+ 406:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 407:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 408:.\Generated_Source\PSoC4/UART_PM.c ****     else if (UART_SCB_MODE_UART_RUNTM_CFG)
+ 409:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ 410:.\Generated_Source\PSoC4/UART_PM.c ****         if(UART_UART_CTRL_MODE_UART_SMARTCARD != 
+ 411:.\Generated_Source\PSoC4/UART_PM.c ****                 (UART_UART_CTRL_REG & UART_UART_CTRL_MODE_MASK))
+ 412:.\Generated_Source\PSoC4/UART_PM.c ****         /* UART Standard or IrDA */
+ 413:.\Generated_Source\PSoC4/UART_PM.c ****         {
+ 414:.\Generated_Source\PSoC4/UART_PM.c ****         #if(UART_MISO_SDA_TX_PIN)
+ 415:.\Generated_Source\PSoC4/UART_PM.c ****             UART_spi_miso_i2c_sda_uart_tx_INP_DIS &= \
+ 416:.\Generated_Source\PSoC4/UART_PM.c ****                                                 (uint32) ~((uint32) UART_spi_miso_i2c_sda_uart_tx_M
+ 417:.\Generated_Source\PSoC4/UART_PM.c ****         #endif /* (UART_MISO_SDA_TX_PIN_PIN) */
+ 418:.\Generated_Source\PSoC4/UART_PM.c ****         }
+ 419:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 420:.\Generated_Source\PSoC4/UART_PM.c ****     else
+ 421:.\Generated_Source\PSoC4/UART_PM.c ****     {
+ 422:.\Generated_Source\PSoC4/UART_PM.c ****         /* Does nothing */
+ 423:.\Generated_Source\PSoC4/UART_PM.c ****     }
+ 424:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 425:.\Generated_Source\PSoC4/UART_PM.c **** #else
+ 426:.\Generated_Source\PSoC4/UART_PM.c ****         
+ 427:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is SPI Master */
+ 428:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_PINS)
+ 429:.\Generated_Source\PSoC4/UART_PM.c ****         UART_sclk_m_INP_DIS &= (uint32) ~((uint32) UART_sclk_m_MASK);
+ 430:.\Generated_Source\PSoC4/UART_PM.c ****         UART_mosi_m_INP_DIS &= (uint32) ~((uint32) UART_mosi_m_MASK);
+ 431:.\Generated_Source\PSoC4/UART_PM.c ****         UART_miso_m_INP_DIS &= (uint32) ~((uint32) UART_miso_m_MASK);
+ 432:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_PINS) */
+ 433:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 434:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS0_PIN)
+ 435:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss0_m_INP_DIS &= (uint32) ~((uint32) UART_ss0_m_MASK);
+ 436:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS0_PIN) */
+ 437:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 438:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS1_PIN)
+ 439:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss1_m_INP_DIS &= (uint32) ~((uint32) UART_ss1_m_MASK);
+ 440:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS1_PIN) */
+ 441:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 442:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS2_PIN)
+ 443:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss2_m_INP_DIS &= (uint32) ~((uint32) UART_ss2_m_MASK);
+ 444:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS2_PIN) */
+ 445:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 446:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_MASTER_SS3_PIN)
+ 447:.\Generated_Source\PSoC4/UART_PM.c ****         UART_ss3_m_INP_DIS &= (uint32) ~((uint32) UART_ss3_m_MASK);
+ 448:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_MASTER_SS3_PIN) */
+ 449:.\Generated_Source\PSoC4/UART_PM.c ****     
+ 450:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is SPI Slave */
+ 451:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_SPI_SLAVE_PINS)
+ 452:.\Generated_Source\PSoC4/UART_PM.c ****         UART_miso_s_INP_DIS &= (uint32) ~((uint32) UART_miso_s_MASK);
+ 453:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_SPI_SLAVE_PINS) */
+ 454:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 455:.\Generated_Source\PSoC4/UART_PM.c ****     /* SCB mode is UART */
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 12
+
+
+ 456:.\Generated_Source\PSoC4/UART_PM.c ****     #if(UART_UART_TX_PIN)
+ 457:.\Generated_Source\PSoC4/UART_PM.c ****         UART_tx_INP_DIS &= (uint32) ~((uint32) UART_tx_MASK);
+ 169              		.loc 1 457 0
+ 170 0004 034B     		ldr	r3, .L17
+ 171 0006 034A     		ldr	r2, .L17
+ 172 0008 1268     		ldr	r2, [r2]
+ 173 000a 0221     		mov	r1, #2
+ 174 000c 8A43     		bic	r2, r2, r1
+ 175 000e 1A60     		str	r2, [r3]
+ 458:.\Generated_Source\PSoC4/UART_PM.c ****     #endif /* (UART_UART_TX_PIN) */
+ 459:.\Generated_Source\PSoC4/UART_PM.c **** 
+ 460:.\Generated_Source\PSoC4/UART_PM.c **** #endif /* (UART_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 461:.\Generated_Source\PSoC4/UART_PM.c **** }
+ 176              		.loc 1 461 0
+ 177 0010 BD46     		mov	sp, r7
+ 178              		@ sp needed for prologue
+ 179 0012 80BD     		pop	{r7, pc}
+ 180              	.L18:
+ 181              		.align	2
+ 182              	.L17:
+ 183 0014 18040440 		.word	1074005016
+ 184              		.cfi_endproc
+ 185              	.LFE3:
+ 186              		.size	UART_EnableTxPinsInputBuffer, .-UART_EnableTxPinsInputBuffer
+ 187              		.text
+ 188              	.Letext0:
+ 189              		.section	.debug_loc,"",%progbits
+ 190              	.Ldebug_loc0:
+ 191              	.LLST0:
+ 192 0000 00000000 		.4byte	.LFB0
+ 193 0004 02000000 		.4byte	.LCFI0
+ 194 0008 0100     		.2byte	0x1
+ 195 000a 5D       		.byte	0x5d
+ 196 000b 02000000 		.4byte	.LCFI0
+ 197 000f 04000000 		.4byte	.LCFI1
+ 198 0013 0200     		.2byte	0x2
+ 199 0015 7D       		.byte	0x7d
+ 200 0016 08       		.sleb128 8
+ 201 0017 04000000 		.4byte	.LCFI1
+ 202 001b 2C000000 		.4byte	.LFE0
+ 203 001f 0200     		.2byte	0x2
+ 204 0021 77       		.byte	0x77
+ 205 0022 08       		.sleb128 8
+ 206 0023 00000000 		.4byte	0x0
+ 207 0027 00000000 		.4byte	0x0
+ 208              	.LLST1:
+ 209 002b 00000000 		.4byte	.LFB1
+ 210 002f 02000000 		.4byte	.LCFI2
+ 211 0033 0100     		.2byte	0x1
+ 212 0035 5D       		.byte	0x5d
+ 213 0036 02000000 		.4byte	.LCFI2
+ 214 003a 04000000 		.4byte	.LCFI3
+ 215 003e 0200     		.2byte	0x2
+ 216 0040 7D       		.byte	0x7d
+ 217 0041 08       		.sleb128 8
+ 218 0042 04000000 		.4byte	.LCFI3
+ 219 0046 1C000000 		.4byte	.LFE1
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 13
+
+
+ 220 004a 0200     		.2byte	0x2
+ 221 004c 77       		.byte	0x77
+ 222 004d 08       		.sleb128 8
+ 223 004e 00000000 		.4byte	0x0
+ 224 0052 00000000 		.4byte	0x0
+ 225              	.LLST2:
+ 226 0056 00000000 		.4byte	.LFB2
+ 227 005a 02000000 		.4byte	.LCFI4
+ 228 005e 0100     		.2byte	0x1
+ 229 0060 5D       		.byte	0x5d
+ 230 0061 02000000 		.4byte	.LCFI4
+ 231 0065 04000000 		.4byte	.LCFI5
+ 232 0069 0200     		.2byte	0x2
+ 233 006b 7D       		.byte	0x7d
+ 234 006c 08       		.sleb128 8
+ 235 006d 04000000 		.4byte	.LCFI5
+ 236 0071 18000000 		.4byte	.LFE2
+ 237 0075 0200     		.2byte	0x2
+ 238 0077 77       		.byte	0x77
+ 239 0078 08       		.sleb128 8
+ 240 0079 00000000 		.4byte	0x0
+ 241 007d 00000000 		.4byte	0x0
+ 242              	.LLST3:
+ 243 0081 00000000 		.4byte	.LFB3
+ 244 0085 02000000 		.4byte	.LCFI6
+ 245 0089 0100     		.2byte	0x1
+ 246 008b 5D       		.byte	0x5d
+ 247 008c 02000000 		.4byte	.LCFI6
+ 248 0090 04000000 		.4byte	.LCFI7
+ 249 0094 0200     		.2byte	0x2
+ 250 0096 7D       		.byte	0x7d
+ 251 0097 08       		.sleb128 8
+ 252 0098 04000000 		.4byte	.LCFI7
+ 253 009c 18000000 		.4byte	.LFE3
+ 254 00a0 0200     		.2byte	0x2
+ 255 00a2 77       		.byte	0x77
+ 256 00a3 08       		.sleb128 8
+ 257 00a4 00000000 		.4byte	0x0
+ 258 00a8 00000000 		.4byte	0x0
+ 259              		.file 2 ".\\Generated_Source\\PSoC4\\/cytypes.h"
+ 260              		.file 3 ".\\Generated_Source\\PSoC4\\/UART.h"
+ 261              		.section	.debug_info
+ 262 0000 18010000 		.4byte	0x118
+ 263 0004 0200     		.2byte	0x2
+ 264 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 265 000a 04       		.byte	0x4
+ 266 000b 01       		.uleb128 0x1
+ 267 000c BE000000 		.4byte	.LASF18
+ 268 0010 01       		.byte	0x1
+ 269 0011 60000000 		.4byte	.LASF19
+ 270 0015 CA000000 		.4byte	.LASF20
+ 271 0019 00000000 		.4byte	0x0
+ 272 001d 00000000 		.4byte	0x0
+ 273 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 274 0025 00000000 		.4byte	.Ldebug_line0
+ 275 0029 02       		.uleb128 0x2
+ 276 002a 01       		.byte	0x1
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 14
+
+
+ 277 002b 06       		.byte	0x6
+ 278 002c 69010000 		.4byte	.LASF0
+ 279 0030 02       		.uleb128 0x2
+ 280 0031 01       		.byte	0x1
+ 281 0032 08       		.byte	0x8
+ 282 0033 75010000 		.4byte	.LASF1
+ 283 0037 02       		.uleb128 0x2
+ 284 0038 02       		.byte	0x2
+ 285 0039 05       		.byte	0x5
+ 286 003a 89010000 		.4byte	.LASF2
+ 287 003e 02       		.uleb128 0x2
+ 288 003f 02       		.byte	0x2
+ 289 0040 07       		.byte	0x7
+ 290 0041 56010000 		.4byte	.LASF3
+ 291 0045 02       		.uleb128 0x2
+ 292 0046 04       		.byte	0x4
+ 293 0047 05       		.byte	0x5
+ 294 0048 4D010000 		.4byte	.LASF4
+ 295 004c 02       		.uleb128 0x2
+ 296 004d 04       		.byte	0x4
+ 297 004e 07       		.byte	0x7
+ 298 004f 89000000 		.4byte	.LASF5
+ 299 0053 02       		.uleb128 0x2
+ 300 0054 08       		.byte	0x8
+ 301 0055 05       		.byte	0x5
+ 302 0056 00000000 		.4byte	.LASF6
+ 303 005a 02       		.uleb128 0x2
+ 304 005b 08       		.byte	0x8
+ 305 005c 07       		.byte	0x7
+ 306 005d 9B000000 		.4byte	.LASF7
+ 307 0061 03       		.uleb128 0x3
+ 308 0062 04       		.byte	0x4
+ 309 0063 05       		.byte	0x5
+ 310 0064 696E7400 		.ascii	"int\000"
+ 311 0068 02       		.uleb128 0x2
+ 312 0069 04       		.byte	0x4
+ 313 006a 07       		.byte	0x7
+ 314 006b 93010000 		.4byte	.LASF8
+ 315 006f 04       		.uleb128 0x4
+ 316 0070 83000000 		.4byte	.LASF12
+ 317 0074 02       		.byte	0x2
+ 318 0075 4C       		.byte	0x4c
+ 319 0076 30000000 		.4byte	0x30
+ 320 007a 02       		.uleb128 0x2
+ 321 007b 04       		.byte	0x4
+ 322 007c 04       		.byte	0x4
+ 323 007d 83010000 		.4byte	.LASF9
+ 324 0081 02       		.uleb128 0x2
+ 325 0082 08       		.byte	0x8
+ 326 0083 04       		.byte	0x4
+ 327 0084 46010000 		.4byte	.LASF10
+ 328 0088 02       		.uleb128 0x2
+ 329 0089 01       		.byte	0x1
+ 330 008a 08       		.byte	0x8
+ 331 008b 22010000 		.4byte	.LASF11
+ 332 008f 05       		.uleb128 0x5
+ 333 0090 04       		.byte	0x4
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 15
+
+
+ 334 0091 07       		.byte	0x7
+ 335 0092 06       		.uleb128 0x6
+ 336 0093 01       		.byte	0x1
+ 337 0094 03       		.byte	0x3
+ 338 0095 60       		.byte	0x60
+ 339 0096 A9000000 		.4byte	0xa9
+ 340 009a 07       		.uleb128 0x7
+ 341 009b 3A010000 		.4byte	.LASF21
+ 342 009f 03       		.byte	0x3
+ 343 00a0 61       		.byte	0x61
+ 344 00a1 6F000000 		.4byte	0x6f
+ 345 00a5 02       		.byte	0x2
+ 346 00a6 23       		.byte	0x23
+ 347 00a7 00       		.uleb128 0x0
+ 348 00a8 00       		.byte	0x0
+ 349 00a9 04       		.uleb128 0x4
+ 350 00aa 27010000 		.4byte	.LASF13
+ 351 00ae 03       		.byte	0x3
+ 352 00af 62       		.byte	0x62
+ 353 00b0 92000000 		.4byte	0x92
+ 354 00b4 08       		.uleb128 0x8
+ 355 00b5 01       		.byte	0x1
+ 356 00b6 55000000 		.4byte	.LASF14
+ 357 00ba 01       		.byte	0x1
+ 358 00bb 3A       		.byte	0x3a
+ 359 00bc 01       		.byte	0x1
+ 360 00bd 00000000 		.4byte	.LFB0
+ 361 00c1 2C000000 		.4byte	.LFE0
+ 362 00c5 00000000 		.4byte	.LLST0
+ 363 00c9 08       		.uleb128 0x8
+ 364 00ca 01       		.byte	0x1
+ 365 00cb B2000000 		.4byte	.LASF15
+ 366 00cf 01       		.byte	0x1
+ 367 00d0 8F       		.byte	0x8f
+ 368 00d1 01       		.byte	0x1
+ 369 00d2 00000000 		.4byte	.LFB1
+ 370 00d6 1C000000 		.4byte	.LFE1
+ 371 00da 2B000000 		.4byte	.LLST1
+ 372 00de 08       		.uleb128 0x8
+ 373 00df 01       		.byte	0x1
+ 374 00e0 37000000 		.4byte	.LASF16
+ 375 00e4 01       		.byte	0x1
+ 376 00e5 E8       		.byte	0xe8
+ 377 00e6 01       		.byte	0x1
+ 378 00e7 00000000 		.4byte	.LFB2
+ 379 00eb 18000000 		.4byte	.LFE2
+ 380 00ef 56000000 		.4byte	.LLST2
+ 381 00f3 09       		.uleb128 0x9
+ 382 00f4 01       		.byte	0x1
+ 383 00f5 1A000000 		.4byte	.LASF17
+ 384 00f9 01       		.byte	0x1
+ 385 00fa 6401     		.2byte	0x164
+ 386 00fc 01       		.byte	0x1
+ 387 00fd 00000000 		.4byte	.LFB3
+ 388 0101 18000000 		.4byte	.LFE3
+ 389 0105 81000000 		.4byte	.LLST3
+ 390 0109 0A       		.uleb128 0xa
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 16
+
+
+ 391 010a 0E000000 		.4byte	.LASF22
+ 392 010e 01       		.byte	0x1
+ 393 010f 26       		.byte	0x26
+ 394 0110 A9000000 		.4byte	0xa9
+ 395 0114 01       		.byte	0x1
+ 396 0115 05       		.byte	0x5
+ 397 0116 03       		.byte	0x3
+ 398 0117 00000000 		.4byte	UART_backup
+ 399 011b 00       		.byte	0x0
+ 400              		.section	.debug_abbrev
+ 401 0000 01       		.uleb128 0x1
+ 402 0001 11       		.uleb128 0x11
+ 403 0002 01       		.byte	0x1
+ 404 0003 25       		.uleb128 0x25
+ 405 0004 0E       		.uleb128 0xe
+ 406 0005 13       		.uleb128 0x13
+ 407 0006 0B       		.uleb128 0xb
+ 408 0007 03       		.uleb128 0x3
+ 409 0008 0E       		.uleb128 0xe
+ 410 0009 1B       		.uleb128 0x1b
+ 411 000a 0E       		.uleb128 0xe
+ 412 000b 11       		.uleb128 0x11
+ 413 000c 01       		.uleb128 0x1
+ 414 000d 52       		.uleb128 0x52
+ 415 000e 01       		.uleb128 0x1
+ 416 000f 55       		.uleb128 0x55
+ 417 0010 06       		.uleb128 0x6
+ 418 0011 10       		.uleb128 0x10
+ 419 0012 06       		.uleb128 0x6
+ 420 0013 00       		.byte	0x0
+ 421 0014 00       		.byte	0x0
+ 422 0015 02       		.uleb128 0x2
+ 423 0016 24       		.uleb128 0x24
+ 424 0017 00       		.byte	0x0
+ 425 0018 0B       		.uleb128 0xb
+ 426 0019 0B       		.uleb128 0xb
+ 427 001a 3E       		.uleb128 0x3e
+ 428 001b 0B       		.uleb128 0xb
+ 429 001c 03       		.uleb128 0x3
+ 430 001d 0E       		.uleb128 0xe
+ 431 001e 00       		.byte	0x0
+ 432 001f 00       		.byte	0x0
+ 433 0020 03       		.uleb128 0x3
+ 434 0021 24       		.uleb128 0x24
+ 435 0022 00       		.byte	0x0
+ 436 0023 0B       		.uleb128 0xb
+ 437 0024 0B       		.uleb128 0xb
+ 438 0025 3E       		.uleb128 0x3e
+ 439 0026 0B       		.uleb128 0xb
+ 440 0027 03       		.uleb128 0x3
+ 441 0028 08       		.uleb128 0x8
+ 442 0029 00       		.byte	0x0
+ 443 002a 00       		.byte	0x0
+ 444 002b 04       		.uleb128 0x4
+ 445 002c 16       		.uleb128 0x16
+ 446 002d 00       		.byte	0x0
+ 447 002e 03       		.uleb128 0x3
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 17
+
+
+ 448 002f 0E       		.uleb128 0xe
+ 449 0030 3A       		.uleb128 0x3a
+ 450 0031 0B       		.uleb128 0xb
+ 451 0032 3B       		.uleb128 0x3b
+ 452 0033 0B       		.uleb128 0xb
+ 453 0034 49       		.uleb128 0x49
+ 454 0035 13       		.uleb128 0x13
+ 455 0036 00       		.byte	0x0
+ 456 0037 00       		.byte	0x0
+ 457 0038 05       		.uleb128 0x5
+ 458 0039 24       		.uleb128 0x24
+ 459 003a 00       		.byte	0x0
+ 460 003b 0B       		.uleb128 0xb
+ 461 003c 0B       		.uleb128 0xb
+ 462 003d 3E       		.uleb128 0x3e
+ 463 003e 0B       		.uleb128 0xb
+ 464 003f 00       		.byte	0x0
+ 465 0040 00       		.byte	0x0
+ 466 0041 06       		.uleb128 0x6
+ 467 0042 13       		.uleb128 0x13
+ 468 0043 01       		.byte	0x1
+ 469 0044 0B       		.uleb128 0xb
+ 470 0045 0B       		.uleb128 0xb
+ 471 0046 3A       		.uleb128 0x3a
+ 472 0047 0B       		.uleb128 0xb
+ 473 0048 3B       		.uleb128 0x3b
+ 474 0049 0B       		.uleb128 0xb
+ 475 004a 01       		.uleb128 0x1
+ 476 004b 13       		.uleb128 0x13
+ 477 004c 00       		.byte	0x0
+ 478 004d 00       		.byte	0x0
+ 479 004e 07       		.uleb128 0x7
+ 480 004f 0D       		.uleb128 0xd
+ 481 0050 00       		.byte	0x0
+ 482 0051 03       		.uleb128 0x3
+ 483 0052 0E       		.uleb128 0xe
+ 484 0053 3A       		.uleb128 0x3a
+ 485 0054 0B       		.uleb128 0xb
+ 486 0055 3B       		.uleb128 0x3b
+ 487 0056 0B       		.uleb128 0xb
+ 488 0057 49       		.uleb128 0x49
+ 489 0058 13       		.uleb128 0x13
+ 490 0059 38       		.uleb128 0x38
+ 491 005a 0A       		.uleb128 0xa
+ 492 005b 00       		.byte	0x0
+ 493 005c 00       		.byte	0x0
+ 494 005d 08       		.uleb128 0x8
+ 495 005e 2E       		.uleb128 0x2e
+ 496 005f 00       		.byte	0x0
+ 497 0060 3F       		.uleb128 0x3f
+ 498 0061 0C       		.uleb128 0xc
+ 499 0062 03       		.uleb128 0x3
+ 500 0063 0E       		.uleb128 0xe
+ 501 0064 3A       		.uleb128 0x3a
+ 502 0065 0B       		.uleb128 0xb
+ 503 0066 3B       		.uleb128 0x3b
+ 504 0067 0B       		.uleb128 0xb
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 18
+
+
+ 505 0068 27       		.uleb128 0x27
+ 506 0069 0C       		.uleb128 0xc
+ 507 006a 11       		.uleb128 0x11
+ 508 006b 01       		.uleb128 0x1
+ 509 006c 12       		.uleb128 0x12
+ 510 006d 01       		.uleb128 0x1
+ 511 006e 40       		.uleb128 0x40
+ 512 006f 06       		.uleb128 0x6
+ 513 0070 00       		.byte	0x0
+ 514 0071 00       		.byte	0x0
+ 515 0072 09       		.uleb128 0x9
+ 516 0073 2E       		.uleb128 0x2e
+ 517 0074 00       		.byte	0x0
+ 518 0075 3F       		.uleb128 0x3f
+ 519 0076 0C       		.uleb128 0xc
+ 520 0077 03       		.uleb128 0x3
+ 521 0078 0E       		.uleb128 0xe
+ 522 0079 3A       		.uleb128 0x3a
+ 523 007a 0B       		.uleb128 0xb
+ 524 007b 3B       		.uleb128 0x3b
+ 525 007c 05       		.uleb128 0x5
+ 526 007d 27       		.uleb128 0x27
+ 527 007e 0C       		.uleb128 0xc
+ 528 007f 11       		.uleb128 0x11
+ 529 0080 01       		.uleb128 0x1
+ 530 0081 12       		.uleb128 0x12
+ 531 0082 01       		.uleb128 0x1
+ 532 0083 40       		.uleb128 0x40
+ 533 0084 06       		.uleb128 0x6
+ 534 0085 00       		.byte	0x0
+ 535 0086 00       		.byte	0x0
+ 536 0087 0A       		.uleb128 0xa
+ 537 0088 34       		.uleb128 0x34
+ 538 0089 00       		.byte	0x0
+ 539 008a 03       		.uleb128 0x3
+ 540 008b 0E       		.uleb128 0xe
+ 541 008c 3A       		.uleb128 0x3a
+ 542 008d 0B       		.uleb128 0xb
+ 543 008e 3B       		.uleb128 0x3b
+ 544 008f 0B       		.uleb128 0xb
+ 545 0090 49       		.uleb128 0x49
+ 546 0091 13       		.uleb128 0x13
+ 547 0092 3F       		.uleb128 0x3f
+ 548 0093 0C       		.uleb128 0xc
+ 549 0094 02       		.uleb128 0x2
+ 550 0095 0A       		.uleb128 0xa
+ 551 0096 00       		.byte	0x0
+ 552 0097 00       		.byte	0x0
+ 553 0098 00       		.byte	0x0
+ 554              		.section	.debug_pubnames,"",%progbits
+ 555 0000 80000000 		.4byte	0x80
+ 556 0004 0200     		.2byte	0x2
+ 557 0006 00000000 		.4byte	.Ldebug_info0
+ 558 000a 1C010000 		.4byte	0x11c
+ 559 000e B4000000 		.4byte	0xb4
+ 560 0012 55415254 		.ascii	"UART_Sleep\000"
+ 560      5F536C65 
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 19
+
+
+ 560      657000
+ 561 001d C9000000 		.4byte	0xc9
+ 562 0021 55415254 		.ascii	"UART_Wakeup\000"
+ 562      5F57616B 
+ 562      65757000 
+ 563 002d DE000000 		.4byte	0xde
+ 564 0031 55415254 		.ascii	"UART_DisableTxPinsInputBuffer\000"
+ 564      5F446973 
+ 564      61626C65 
+ 564      54785069 
+ 564      6E73496E 
+ 565 004f F3000000 		.4byte	0xf3
+ 566 0053 55415254 		.ascii	"UART_EnableTxPinsInputBuffer\000"
+ 566      5F456E61 
+ 566      626C6554 
+ 566      7850696E 
+ 566      73496E70 
+ 567 0070 09010000 		.4byte	0x109
+ 568 0074 55415254 		.ascii	"UART_backup\000"
+ 568      5F626163 
+ 568      6B757000 
+ 569 0080 00000000 		.4byte	0x0
+ 570              		.section	.debug_aranges,"",%progbits
+ 571 0000 34000000 		.4byte	0x34
+ 572 0004 0200     		.2byte	0x2
+ 573 0006 00000000 		.4byte	.Ldebug_info0
+ 574 000a 04       		.byte	0x4
+ 575 000b 00       		.byte	0x0
+ 576 000c 0000     		.2byte	0x0
+ 577 000e 0000     		.2byte	0x0
+ 578 0010 00000000 		.4byte	.LFB0
+ 579 0014 2C000000 		.4byte	.LFE0-.LFB0
+ 580 0018 00000000 		.4byte	.LFB1
+ 581 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 582 0020 00000000 		.4byte	.LFB2
+ 583 0024 18000000 		.4byte	.LFE2-.LFB2
+ 584 0028 00000000 		.4byte	.LFB3
+ 585 002c 18000000 		.4byte	.LFE3-.LFB3
+ 586 0030 00000000 		.4byte	0x0
+ 587 0034 00000000 		.4byte	0x0
+ 588              		.section	.debug_ranges,"",%progbits
+ 589              	.Ldebug_ranges0:
+ 590 0000 00000000 		.4byte	.Ltext0
+ 591 0004 00000000 		.4byte	.Letext0
+ 592 0008 00000000 		.4byte	.LFB0
+ 593 000c 2C000000 		.4byte	.LFE0
+ 594 0010 00000000 		.4byte	.LFB1
+ 595 0014 1C000000 		.4byte	.LFE1
+ 596 0018 00000000 		.4byte	.LFB2
+ 597 001c 18000000 		.4byte	.LFE2
+ 598 0020 00000000 		.4byte	.LFB3
+ 599 0024 18000000 		.4byte	.LFE3
+ 600 0028 00000000 		.4byte	0x0
+ 601 002c 00000000 		.4byte	0x0
+ 602              		.section	.debug_str,"MS",%progbits,1
+ 603              	.LASF6:
+ 604 0000 6C6F6E67 		.ascii	"long long int\000"
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 20
+
+
+ 604      206C6F6E 
+ 604      6720696E 
+ 604      7400
+ 605              	.LASF22:
+ 606 000e 55415254 		.ascii	"UART_backup\000"
+ 606      5F626163 
+ 606      6B757000 
+ 607              	.LASF17:
+ 608 001a 55415254 		.ascii	"UART_EnableTxPinsInputBuffer\000"
+ 608      5F456E61 
+ 608      626C6554 
+ 608      7850696E 
+ 608      73496E70 
+ 609              	.LASF16:
+ 610 0037 55415254 		.ascii	"UART_DisableTxPinsInputBuffer\000"
+ 610      5F446973 
+ 610      61626C65 
+ 610      54785069 
+ 610      6E73496E 
+ 611              	.LASF14:
+ 612 0055 55415254 		.ascii	"UART_Sleep\000"
+ 612      5F536C65 
+ 612      657000
+ 613              	.LASF19:
+ 614 0060 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\UART_PM.c\000"
+ 614      6E657261 
+ 614      7465645F 
+ 614      536F7572 
+ 614      63655C50 
+ 615              	.LASF12:
+ 616 0083 75696E74 		.ascii	"uint8\000"
+ 616      3800
+ 617              	.LASF5:
+ 618 0089 6C6F6E67 		.ascii	"long unsigned int\000"
+ 618      20756E73 
+ 618      69676E65 
+ 618      6420696E 
+ 618      7400
+ 619              	.LASF7:
+ 620 009b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 620      206C6F6E 
+ 620      6720756E 
+ 620      7369676E 
+ 620      65642069 
+ 621              	.LASF15:
+ 622 00b2 55415254 		.ascii	"UART_Wakeup\000"
+ 622      5F57616B 
+ 622      65757000 
+ 623              	.LASF18:
+ 624 00be 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 624      4320342E 
+ 624      342E3100 
+ 625              	.LASF20:
+ 626 00ca 433A5C55 		.ascii	"C:\\Users\\wbz\\Desktop\\PSoC 4\\Comparator_PSoC4_E"
+ 626      73657273 
+ 626      5C77627A 
+ 626      5C446573 
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccEtsw5V.s 			page 21
+
+
+ 626      6B746F70 
+ 627 00f8 78616D70 		.ascii	"xample01\\Comparator_PSoC4_Example01.cydsn\000"
+ 627      6C653031 
+ 627      5C436F6D 
+ 627      70617261 
+ 627      746F725F 
+ 628              	.LASF11:
+ 629 0122 63686172 		.ascii	"char\000"
+ 629      00
+ 630              	.LASF13:
+ 631 0127 55415254 		.ascii	"UART_BACKUP_STRUCT\000"
+ 631      5F424143 
+ 631      4B55505F 
+ 631      53545255 
+ 631      435400
+ 632              	.LASF21:
+ 633 013a 656E6162 		.ascii	"enableState\000"
+ 633      6C655374 
+ 633      61746500 
+ 634              	.LASF10:
+ 635 0146 646F7562 		.ascii	"double\000"
+ 635      6C6500
+ 636              	.LASF4:
+ 637 014d 6C6F6E67 		.ascii	"long int\000"
+ 637      20696E74 
+ 637      00
+ 638              	.LASF3:
+ 639 0156 73686F72 		.ascii	"short unsigned int\000"
+ 639      7420756E 
+ 639      7369676E 
+ 639      65642069 
+ 639      6E7400
+ 640              	.LASF0:
+ 641 0169 7369676E 		.ascii	"signed char\000"
+ 641      65642063 
+ 641      68617200 
+ 642              	.LASF1:
+ 643 0175 756E7369 		.ascii	"unsigned char\000"
+ 643      676E6564 
+ 643      20636861 
+ 643      7200
+ 644              	.LASF9:
+ 645 0183 666C6F61 		.ascii	"float\000"
+ 645      7400
+ 646              	.LASF2:
+ 647 0189 73686F72 		.ascii	"short int\000"
+ 647      7420696E 
+ 647      7400
+ 648              	.LASF8:
+ 649 0193 756E7369 		.ascii	"unsigned int\000"
+ 649      676E6564 
+ 649      20696E74 
+ 649      00
+ 650              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

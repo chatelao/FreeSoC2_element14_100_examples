@@ -1,0 +1,17 @@
+# Blinking LED
+# 2015-12-21 16:37:23Z
+
+# IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 0
+# IO_1@[IOP=(1)][IoId=(1)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 1
+set_location "ClockBlock" clockblockcell -1 -1 0
+set_io "Pin_BlueLED(0)" iocell 6 7
+set_location "\PWM:PWMUDB:status_2\" 0 5 0 0
+set_location "\PWM:PWMUDB:genblk1:ctrlreg\" 0 5 6
+set_location "\PWM:PWMUDB:genblk8:stsreg\" 0 5 4
+set_location "\PWM:PWMUDB:sP8:pwmdp:u0\" 0 5 2
+set_location "\PWM:PWMUDB:runmode_enable\" 0 5 0 1
+set_location "\PWM:PWMUDB:prevCompare1\" 0 5 0 3
+set_location "\PWM:PWMUDB:status_0\" 0 5 1 0
+set_location "Net_176" 0 5 0 2

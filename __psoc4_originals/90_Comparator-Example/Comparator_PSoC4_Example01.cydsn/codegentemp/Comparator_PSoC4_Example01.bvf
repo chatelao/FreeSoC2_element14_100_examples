@@ -1,0 +1,41 @@
+
+----------------------------------------------------------------------
+
+Verifying bitstream.
+
+-----------------------------------------------------------------------
+
+
+---------Mapping jacks.---------
+
+
+---------Processing bitstream.---------
+
+Utilized "dsi_hc@[DSI=(0,1)][side=top]"
+Utilized "dsi_hv_b@[DSI=(0,1)][side=top]"
+Utilized "dsi_hc@[DSI=(1,1)][side=bottom]"
+Utilized "dsi_hv_b@[DSI=(1,1)][side=bottom]"
+
+---------Propagating signals.---------
+
+Found signal "Net_14" on jack "ctb_dsi_compCTB0.OA0".
+Number of connected bvjacks: 1.
+
+    1. Connected jack name: "io_ijack_3[IOP=(0)]"
+    
+    
+
+
+---------Verifying signals (routing).---------
+
+
+---------Verifying configuration.---------
+
+
+
+----------------------------------------------------------------------
+
+Bitstream verification passed.
+
+-----------------------------------------------------------------------
+

@@ -1,0 +1,416 @@
+ARM GAS  C:\Users\gagan\AppData\Local\Temp\ccS6k87c.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"main.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 37000000 		.text
+  19      02001F00 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.text.main,"ax",%progbits
+  23              		.align	2
+  24              		.global	main
+  25              		.code	16
+  26              		.thumb_func
+  27              		.type	main, %function
+  28              	main:
+  29              	.LFB20:
+  30              		.file 1 ".\\main.c"
+   1:.\main.c      **** /******************************************************************************
+   2:.\main.c      **** * Project Name		: Blinking LED
+   3:.\main.c      **** * File Name			: main.c
+   4:.\main.c      **** * Version 			: 1.0
+   5:.\main.c      **** * Device Used		: CY8C4245AXI-483
+   6:.\main.c      **** * Software Used		: PSoC Creator 2.2 SP1
+   7:.\main.c      **** * Compiler    		: ARMGCC 4.4.1, ARM RVDS Generic , ARM MDK Generic
+   8:.\main.c      **** * Related Hardware	: CY8CKIT-042 PSoC 4 Pioneer Kit 
+   9:.\main.c      **** *
+  10:.\main.c      **** ********************************************************************************
+  11:.\main.c      **** * Copyright (2013), Cypress Semiconductor Corporation. All Rights Reserved.
+  12:.\main.c      **** ********************************************************************************
+  13:.\main.c      **** * This software is owned by Cypress Semiconductor Corporation (Cypress)
+  14:.\main.c      **** * and is protected by and subject to worldwide patent protection (United
+  15:.\main.c      **** * States and foreign), United States copyright laws and international treaty
+  16:.\main.c      **** * provisions. Cypress hereby grants to licensee a personal, non-exclusive,
+  17:.\main.c      **** * non-transferable license to copy, use, modify, create derivative works of,
+  18:.\main.c      **** * and compile the Cypress Source Code and derivative works for the sole
+  19:.\main.c      **** * purpose of creating custom software in support of licensee product to be
+  20:.\main.c      **** * used only in conjunction with a Cypress integrated circuit as specified in
+  21:.\main.c      **** * the applicable agreement. Any reproduction, modification, translation,
+  22:.\main.c      **** * compilation, or representation of this software except as specified above 
+  23:.\main.c      **** * is prohibited without the express written permission of Cypress.
+ARM GAS  C:\Users\gagan\AppData\Local\Temp\ccS6k87c.s 			page 2
+
+
+  24:.\main.c      **** *
+  25:.\main.c      **** * Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH 
+  26:.\main.c      **** * REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  27:.\main.c      **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  28:.\main.c      **** * Cypress reserves the right to make changes without further notice to the 
+  29:.\main.c      **** * materials described herein. Cypress does not assume any liability arising out 
+  30:.\main.c      **** * of the application or use of any product or circuit described herein. Cypress 
+  31:.\main.c      **** * does not authorize its products for use as critical components in life-support 
+  32:.\main.c      **** * systems where a malfunction or failure may reasonably be expected to result in 
+  33:.\main.c      **** * significant injury to the user. The inclusion of Cypress' product in a life-
+  34:.\main.c      **** * support systems application implies that the manufacturer assumes all risk of 
+  35:.\main.c      **** * such use and in doing so indemnifies Cypress against all charges. 
+  36:.\main.c      **** *
+  37:.\main.c      **** * Use of this Software may be limited by and subject to the applicable Cypress
+  38:.\main.c      **** * software license agreement. 
+  39:.\main.c      **** *******************************************************************************/
+  40:.\main.c      **** 
+  41:.\main.c      **** /******************************************************************************
+  42:.\main.c      **** *                           THEORY OF OPERATION
+  43:.\main.c      **** * This is a blinking LED project. A PWM component drives the pin connected to 
+  44:.\main.c      **** * the LED on the CY8CKIT-042 to blink the LED at regular intervals.
+  45:.\main.c      **** *
+  46:.\main.c      **** * Hardware connection on the Kit
+  47:.\main.c      **** * Blue LED - P0[3]
+  48:.\main.c      **** ******************************************************************************/
+  49:.\main.c      **** #include <device.h>
+  50:.\main.c      **** 
+  51:.\main.c      **** void main()
+  52:.\main.c      **** {
+  31              		.loc 1 52 0
+  32              		.cfi_startproc
+  33 0000 80B5     		push	{r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 7, -8
+  37              		.cfi_offset 14, -4
+  38 0002 00AF     		add	r7, sp, #0
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_register 7
+  53:.\main.c      **** 	/* Start the Clock and PWM components. Clock can be started automatically 
+  54:.\main.c      **** 	after reset by enabling “Start on Reset” in the Clocks tab of 
+  55:.\main.c      **** 	Blinking LED.cydwr. We are doing this manually for instructive purpose. */
+  56:.\main.c      ****     Clock_Start();
+  41              		.loc 1 56 0
+  42 0004 FFF7FEFF 		bl	Clock_Start
+  57:.\main.c      **** 	PWM_Start();
+  43              		.loc 1 57 0
+  44 0008 FFF7FEFF 		bl	PWM_Start
+  45              	.L2:
+  58:.\main.c      ****     
+  59:.\main.c      **** 	for(;;)
+  60:.\main.c      ****     {
+  61:.\main.c      ****         
+  62:.\main.c      ****     }
+  46              		.loc 1 62 0
+  47 000c FEE7     		b	.L2
+  48              		.cfi_endproc
+ARM GAS  C:\Users\gagan\AppData\Local\Temp\ccS6k87c.s 			page 3
+
+
+  49              	.LFE20:
+  50              		.size	main, .-main
+  51 000e C046     		.text
+  52              	.Letext0:
+  53              		.section	.debug_loc,"",%progbits
+  54              	.Ldebug_loc0:
+  55              	.LLST0:
+  56 0000 00000000 		.4byte	.LFB20
+  57 0004 02000000 		.4byte	.LCFI0
+  58 0008 0100     		.2byte	0x1
+  59 000a 5D       		.byte	0x5d
+  60 000b 02000000 		.4byte	.LCFI0
+  61 000f 04000000 		.4byte	.LCFI1
+  62 0013 0200     		.2byte	0x2
+  63 0015 7D       		.byte	0x7d
+  64 0016 08       		.sleb128 8
+  65 0017 04000000 		.4byte	.LCFI1
+  66 001b 0E000000 		.4byte	.LFE20
+  67 001f 0200     		.2byte	0x2
+  68 0021 77       		.byte	0x77
+  69 0022 08       		.sleb128 8
+  70 0023 00000000 		.4byte	0x0
+  71 0027 00000000 		.4byte	0x0
+  72              		.section	.debug_info
+  73 0000 98000000 		.4byte	0x98
+  74 0004 0200     		.2byte	0x2
+  75 0006 00000000 		.4byte	.Ldebug_abbrev0
+  76 000a 04       		.byte	0x4
+  77 000b 01       		.uleb128 0x1
+  78 000c 8D000000 		.4byte	.LASF12
+  79 0010 01       		.byte	0x1
+  80 0011 EB000000 		.4byte	.LASF13
+  81 0015 1B000000 		.4byte	.LASF14
+  82 0019 00000000 		.4byte	0x0
+  83 001d 00000000 		.4byte	0x0
+  84 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+  85 0025 00000000 		.4byte	.Ldebug_line0
+  86 0029 02       		.uleb128 0x2
+  87 002a 01       		.byte	0x1
+  88 002b 06       		.byte	0x6
+  89 002c D9000000 		.4byte	.LASF0
+  90 0030 02       		.uleb128 0x2
+  91 0031 01       		.byte	0x1
+  92 0032 08       		.byte	0x8
+  93 0033 99000000 		.4byte	.LASF1
+  94 0037 02       		.uleb128 0x2
+  95 0038 02       		.byte	0x2
+  96 0039 05       		.byte	0x5
+  97 003a B5000000 		.4byte	.LASF2
+  98 003e 02       		.uleb128 0x2
+  99 003f 02       		.byte	0x2
+ 100 0040 07       		.byte	0x7
+ 101 0041 C6000000 		.4byte	.LASF3
+ 102 0045 02       		.uleb128 0x2
+ 103 0046 04       		.byte	0x4
+ 104 0047 05       		.byte	0x5
+ 105 0048 AC000000 		.4byte	.LASF4
+ARM GAS  C:\Users\gagan\AppData\Local\Temp\ccS6k87c.s 			page 4
+
+
+ 106 004c 02       		.uleb128 0x2
+ 107 004d 04       		.byte	0x4
+ 108 004e 07       		.byte	0x7
+ 109 004f 64000000 		.4byte	.LASF5
+ 110 0053 02       		.uleb128 0x2
+ 111 0054 08       		.byte	0x8
+ 112 0055 05       		.byte	0x5
+ 113 0056 00000000 		.4byte	.LASF6
+ 114 005a 02       		.uleb128 0x2
+ 115 005b 08       		.byte	0x8
+ 116 005c 07       		.byte	0x7
+ 117 005d 76000000 		.4byte	.LASF7
+ 118 0061 03       		.uleb128 0x3
+ 119 0062 04       		.byte	0x4
+ 120 0063 05       		.byte	0x5
+ 121 0064 696E7400 		.ascii	"int\000"
+ 122 0068 02       		.uleb128 0x2
+ 123 0069 04       		.byte	0x4
+ 124 006a 07       		.byte	0x7
+ 125 006b 0E000000 		.4byte	.LASF8
+ 126 006f 02       		.uleb128 0x2
+ 127 0070 04       		.byte	0x4
+ 128 0071 04       		.byte	0x4
+ 129 0072 E5000000 		.4byte	.LASF9
+ 130 0076 02       		.uleb128 0x2
+ 131 0077 08       		.byte	0x8
+ 132 0078 04       		.byte	0x4
+ 133 0079 BF000000 		.4byte	.LASF10
+ 134 007d 02       		.uleb128 0x2
+ 135 007e 01       		.byte	0x1
+ 136 007f 08       		.byte	0x8
+ 137 0080 A7000000 		.4byte	.LASF11
+ 138 0084 04       		.uleb128 0x4
+ 139 0085 04       		.byte	0x4
+ 140 0086 07       		.byte	0x7
+ 141 0087 05       		.uleb128 0x5
+ 142 0088 01       		.byte	0x1
+ 143 0089 5F000000 		.4byte	.LASF15
+ 144 008d 01       		.byte	0x1
+ 145 008e 33       		.byte	0x33
+ 146 008f 00000000 		.4byte	.LFB20
+ 147 0093 0E000000 		.4byte	.LFE20
+ 148 0097 00000000 		.4byte	.LLST0
+ 149 009b 00       		.byte	0x0
+ 150              		.section	.debug_abbrev
+ 151 0000 01       		.uleb128 0x1
+ 152 0001 11       		.uleb128 0x11
+ 153 0002 01       		.byte	0x1
+ 154 0003 25       		.uleb128 0x25
+ 155 0004 0E       		.uleb128 0xe
+ 156 0005 13       		.uleb128 0x13
+ 157 0006 0B       		.uleb128 0xb
+ 158 0007 03       		.uleb128 0x3
+ 159 0008 0E       		.uleb128 0xe
+ 160 0009 1B       		.uleb128 0x1b
+ 161 000a 0E       		.uleb128 0xe
+ 162 000b 11       		.uleb128 0x11
+ARM GAS  C:\Users\gagan\AppData\Local\Temp\ccS6k87c.s 			page 5
+
+
+ 163 000c 01       		.uleb128 0x1
+ 164 000d 52       		.uleb128 0x52
+ 165 000e 01       		.uleb128 0x1
+ 166 000f 55       		.uleb128 0x55
+ 167 0010 06       		.uleb128 0x6
+ 168 0011 10       		.uleb128 0x10
+ 169 0012 06       		.uleb128 0x6
+ 170 0013 00       		.byte	0x0
+ 171 0014 00       		.byte	0x0
+ 172 0015 02       		.uleb128 0x2
+ 173 0016 24       		.uleb128 0x24
+ 174 0017 00       		.byte	0x0
+ 175 0018 0B       		.uleb128 0xb
+ 176 0019 0B       		.uleb128 0xb
+ 177 001a 3E       		.uleb128 0x3e
+ 178 001b 0B       		.uleb128 0xb
+ 179 001c 03       		.uleb128 0x3
+ 180 001d 0E       		.uleb128 0xe
+ 181 001e 00       		.byte	0x0
+ 182 001f 00       		.byte	0x0
+ 183 0020 03       		.uleb128 0x3
+ 184 0021 24       		.uleb128 0x24
+ 185 0022 00       		.byte	0x0
+ 186 0023 0B       		.uleb128 0xb
+ 187 0024 0B       		.uleb128 0xb
+ 188 0025 3E       		.uleb128 0x3e
+ 189 0026 0B       		.uleb128 0xb
+ 190 0027 03       		.uleb128 0x3
+ 191 0028 08       		.uleb128 0x8
+ 192 0029 00       		.byte	0x0
+ 193 002a 00       		.byte	0x0
+ 194 002b 04       		.uleb128 0x4
+ 195 002c 24       		.uleb128 0x24
+ 196 002d 00       		.byte	0x0
+ 197 002e 0B       		.uleb128 0xb
+ 198 002f 0B       		.uleb128 0xb
+ 199 0030 3E       		.uleb128 0x3e
+ 200 0031 0B       		.uleb128 0xb
+ 201 0032 00       		.byte	0x0
+ 202 0033 00       		.byte	0x0
+ 203 0034 05       		.uleb128 0x5
+ 204 0035 2E       		.uleb128 0x2e
+ 205 0036 00       		.byte	0x0
+ 206 0037 3F       		.uleb128 0x3f
+ 207 0038 0C       		.uleb128 0xc
+ 208 0039 03       		.uleb128 0x3
+ 209 003a 0E       		.uleb128 0xe
+ 210 003b 3A       		.uleb128 0x3a
+ 211 003c 0B       		.uleb128 0xb
+ 212 003d 3B       		.uleb128 0x3b
+ 213 003e 0B       		.uleb128 0xb
+ 214 003f 11       		.uleb128 0x11
+ 215 0040 01       		.uleb128 0x1
+ 216 0041 12       		.uleb128 0x12
+ 217 0042 01       		.uleb128 0x1
+ 218 0043 40       		.uleb128 0x40
+ 219 0044 06       		.uleb128 0x6
+ARM GAS  C:\Users\gagan\AppData\Local\Temp\ccS6k87c.s 			page 6
+
+
+ 220 0045 00       		.byte	0x0
+ 221 0046 00       		.byte	0x0
+ 222 0047 00       		.byte	0x0
+ 223              		.section	.debug_pubnames,"",%progbits
+ 224 0000 17000000 		.4byte	0x17
+ 225 0004 0200     		.2byte	0x2
+ 226 0006 00000000 		.4byte	.Ldebug_info0
+ 227 000a 9C000000 		.4byte	0x9c
+ 228 000e 87000000 		.4byte	0x87
+ 229 0012 6D61696E 		.ascii	"main\000"
+ 229      00
+ 230 0017 00000000 		.4byte	0x0
+ 231              		.section	.debug_aranges,"",%progbits
+ 232 0000 1C000000 		.4byte	0x1c
+ 233 0004 0200     		.2byte	0x2
+ 234 0006 00000000 		.4byte	.Ldebug_info0
+ 235 000a 04       		.byte	0x4
+ 236 000b 00       		.byte	0x0
+ 237 000c 0000     		.2byte	0x0
+ 238 000e 0000     		.2byte	0x0
+ 239 0010 00000000 		.4byte	.LFB20
+ 240 0014 0E000000 		.4byte	.LFE20-.LFB20
+ 241 0018 00000000 		.4byte	0x0
+ 242 001c 00000000 		.4byte	0x0
+ 243              		.section	.debug_ranges,"",%progbits
+ 244              	.Ldebug_ranges0:
+ 245 0000 00000000 		.4byte	.Ltext0
+ 246 0004 00000000 		.4byte	.Letext0
+ 247 0008 00000000 		.4byte	.LFB20
+ 248 000c 0E000000 		.4byte	.LFE20
+ 249 0010 00000000 		.4byte	0x0
+ 250 0014 00000000 		.4byte	0x0
+ 251              		.section	.debug_str,"MS",%progbits,1
+ 252              	.LASF6:
+ 253 0000 6C6F6E67 		.ascii	"long long int\000"
+ 253      206C6F6E 
+ 253      6720696E 
+ 253      7400
+ 254              	.LASF8:
+ 255 000e 756E7369 		.ascii	"unsigned int\000"
+ 255      676E6564 
+ 255      20696E74 
+ 255      00
+ 256              	.LASF14:
+ 257 001b 433A5C55 		.ascii	"C:\\Users\\gagan\\Pioneer Kit Projects\\Blinking LE"
+ 257      73657273 
+ 257      5C676167 
+ 257      616E5C50 
+ 257      696F6E65 
+ 258 004a 445C426C 		.ascii	"D\\Blinking LED.cydsn\000"
+ 258      696E6B69 
+ 258      6E67204C 
+ 258      45442E63 
+ 258      7964736E 
+ 259              	.LASF15:
+ 260 005f 6D61696E 		.ascii	"main\000"
+ 260      00
+ARM GAS  C:\Users\gagan\AppData\Local\Temp\ccS6k87c.s 			page 7
+
+
+ 261              	.LASF5:
+ 262 0064 6C6F6E67 		.ascii	"long unsigned int\000"
+ 262      20756E73 
+ 262      69676E65 
+ 262      6420696E 
+ 262      7400
+ 263              	.LASF7:
+ 264 0076 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 264      206C6F6E 
+ 264      6720756E 
+ 264      7369676E 
+ 264      65642069 
+ 265              	.LASF12:
+ 266 008d 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 266      4320342E 
+ 266      342E3100 
+ 267              	.LASF1:
+ 268 0099 756E7369 		.ascii	"unsigned char\000"
+ 268      676E6564 
+ 268      20636861 
+ 268      7200
+ 269              	.LASF11:
+ 270 00a7 63686172 		.ascii	"char\000"
+ 270      00
+ 271              	.LASF4:
+ 272 00ac 6C6F6E67 		.ascii	"long int\000"
+ 272      20696E74 
+ 272      00
+ 273              	.LASF2:
+ 274 00b5 73686F72 		.ascii	"short int\000"
+ 274      7420696E 
+ 274      7400
+ 275              	.LASF10:
+ 276 00bf 646F7562 		.ascii	"double\000"
+ 276      6C6500
+ 277              	.LASF3:
+ 278 00c6 73686F72 		.ascii	"short unsigned int\000"
+ 278      7420756E 
+ 278      7369676E 
+ 278      65642069 
+ 278      6E7400
+ 279              	.LASF0:
+ 280 00d9 7369676E 		.ascii	"signed char\000"
+ 280      65642063 
+ 280      68617200 
+ 281              	.LASF9:
+ 282 00e5 666C6F61 		.ascii	"float\000"
+ 282      7400
+ 283              	.LASF13:
+ 284 00eb 2E5C6D61 		.ascii	".\\main.c\000"
+ 284      696E2E63 
+ 284      00
+ 285              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"

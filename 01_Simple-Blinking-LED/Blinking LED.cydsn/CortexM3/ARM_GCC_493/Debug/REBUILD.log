@@ -1,0 +1,6 @@
+--------------- Rebuild Started: 12/21/2015 17:22:09 Project: Blinking LED, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+cydsfit.exe -.appdatapath "C:\Users\hp\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p "C:\Users\hp\Dropbox\Privat\__github\FreeSoC2_element14_100_examples\01_Simple-Blinking-LED\Blinking LED.cydsn\Blinking LED.cyprj" -d CY8C5888AXI-LP096 -s "C:\Users\hp\Dropbox\Privat\__github\FreeSoC2_element14_100_examples\01_Simple-Blinking-LED\Blinking LED.cydsn\Generated_Source\PSoC5" -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
+ADD: sdb.M0059: error: Error in component: cy_boot. The cy_boot_v3_40 component (cy_boot) is obsolete for this and future versions of PSoC Creator. It should be replaced with a production version of the component (or an alternative implementation). Please run Project->Update Components for more help.
+Error: cdf.M0005: CyDsFit aborted due to errors, please address all errors and rerun CyDsFit. (App=cydsfit)
+--------------- Rebuild Failed: 12/21/2015 17:22:15 ---------------

@@ -1,0 +1,7 @@
+C:\Users\hp\Dropbox\Privat\__github\FreeSoC2_element14_100_examples\01_Simple-Blinking-LED\Blinking LED.cydsn\Blinking LED.cyprj|835eb510-5930-4998-afa8-c55c4ce2982c
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|f383c8ab-df37-4194-8254-706af2958e91
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|7a385434-4b7d-4cb3-ad92-cd7ef980b5bd
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|3f24f7c8-e967-400f-a4c2-b6c56d9229a1
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|14d35c39-6403-4d61-b582-811290bad9f6
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|0c0ab91a-d587-4e66-8259-58c04aa64257
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev\psoc4\PSoC4AnalogDevice\psoc4arch.cydsn\psoc4arch.cyprj|d7c82ad0-cabc-46a1-8a4b-456ac4eccc45

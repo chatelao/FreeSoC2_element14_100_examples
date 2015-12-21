@@ -1,0 +1,504 @@
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.code	16
+  12              		.file	"main.c"
+  13              		.section	.debug_abbrev,"",%progbits
+  14              	.Ldebug_abbrev0:
+  15              		.section	.debug_info,"",%progbits
+  16              	.Ldebug_info0:
+  17              		.section	.debug_line,"",%progbits
+  18              	.Ldebug_line0:
+  19 0000 3F000000 		.text
+  19      02001F00 
+  19      00000201 
+  19      FB0E0D00 
+  19      01010101 
+  20              	.Ltext0:
+  21              		.cfi_sections	.debug_frame
+  22              		.section	.rodata
+  23              		.align	2
+  24              	.LC0:
+  25 0000 436F6D70 		.ascii	"Comparator Test\015\012\000"
+  25      61726174 
+  25      6F722054 
+  25      6573740D 
+  25      0A00
+  26 0012 0000     		.align	2
+  27              	.LC2:
+  28 0014 52657375 		.ascii	"Result : V1 < V2\015\012\000"
+  28      6C74203A 
+  28      20563120 
+  28      3C205632 
+  28      0D0A00
+  29 0027 00       		.align	2
+  30              	.LC4:
+  31 0028 52657375 		.ascii	"Result : V1 > V2\015\012\000"
+  31      6C74203A 
+  31      20563120 
+  31      3E205632 
+  31      0D0A00
+  32 003b 00       		.section	.text.main,"ax",%progbits
+  33              		.align	2
+  34              		.global	main
+  35              		.code	16
+  36              		.thumb_func
+  37              		.type	main, %function
+  38              	main:
+  39              	.LFB20:
+  40              		.file 1 ".\\main.c"
+   1:.\main.c      **** /*******************************************************************************
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 2
+
+
+   2:.\main.c      **** * File: main.c
+   3:.\main.c      **** *
+   4:.\main.c      **** * Version : 1.0
+   5:.\main.c      **** *
+   6:.\main.c      **** * Description: 
+   7:.\main.c      **** *  This is a source code for example project of PSoC4 Comparator in 
+   8:.\main.c      **** *  Non-Inverting mode.
+   9:.\main.c      **** *
+  10:.\main.c      **** ********************************************************************************
+  11:.\main.c      **** * Copyright 2013, Cypress Semiconductor Corporation. All rights reserved.
+  12:.\main.c      **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  13:.\main.c      **** * by and subject to worldwide patent and copyright laws and treaties.
+  14:.\main.c      **** * Therefore, you may use this software only as provided in the license agreement
+  15:.\main.c      **** * accompanying the software package from which you obtained this software.
+  16:.\main.c      **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  17:.\main.c      **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  18:.\main.c      **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  19:.\main.c      **** *******************************************************************************/
+  20:.\main.c      **** 
+  21:.\main.c      **** #include <device.h>
+  22:.\main.c      **** 
+  23:.\main.c      **** 
+  24:.\main.c      **** #define NEG_IS_GREATER       (0u)
+  25:.\main.c      **** 
+  26:.\main.c      **** 
+  27:.\main.c      **** /*******************************************************************************
+  28:.\main.c      **** * Function Name: main
+  29:.\main.c      **** ********************************************************************************
+  30:.\main.c      **** *
+  31:.\main.c      **** * Summary:
+  32:.\main.c      **** *  Main function performs following functions:
+  33:.\main.c      **** *   1. Initializes the LCD and clears the display
+  34:.\main.c      **** *   2. Start the Comparator
+  35:.\main.c      **** *   3. Sets speed of comparator to "High"
+  36:.\main.c      **** *   4. Sequentially prints current result on the LCD
+  37:.\main.c      **** *
+  38:.\main.c      **** * Parameters:
+  39:.\main.c      **** *  None.
+  40:.\main.c      **** *
+  41:.\main.c      **** * Return:
+  42:.\main.c      **** *  None.
+  43:.\main.c      **** *
+  44:.\main.c      **** *******************************************************************************/
+  45:.\main.c      **** void main()
+  46:.\main.c      **** {
+  41              		.loc 1 46 0
+  42              		.cfi_startproc
+  43 0000 80B5     		push	{r7, lr}
+  44              	.LCFI0:
+  45              		.cfi_def_cfa_offset 8
+  46              		.cfi_offset 7, -8
+  47              		.cfi_offset 14, -4
+  48 0002 00AF     		add	r7, sp, #0
+  49              	.LCFI1:
+  50              		.cfi_def_cfa_register 7
+  47:.\main.c      **** 
+  48:.\main.c      **** //    LCD_Start();
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 3
+
+
+  49:.\main.c      ****     Comp_Start();
+  51              		.loc 1 49 0
+  52 0004 FFF7FEFF 		bl	Comp_Start
+  50:.\main.c      **** 	UART_Start();
+  53              		.loc 1 50 0
+  54 0008 FFF7FEFF 		bl	UART_Start
+  51:.\main.c      ****     
+  52:.\main.c      ****     /* Sets Comparator Speed as High. Actually it is alredy done by 
+  53:.\main.c      ****     * component _Start() function, which set the Speed/Power value selected in 
+  54:.\main.c      ****     * the customizer. This API is to demonstrate that the same can be done with
+  55:.\main.c      ****     * a function call.
+  56:.\main.c      ****     */
+  57:.\main.c      ****     Comp_SetSpeed(Comp_HIGHSPEED);
+  55              		.loc 1 57 0
+  56 000c 0320     		mov	r0, #3
+  57 000e FFF7FEFF 		bl	Comp_SetSpeed
+  58:.\main.c      ****     UART_UartPutString("Comparator Test\r\n");
+  58              		.loc 1 58 0
+  59 0012 0C4B     		ldr	r3, .L6
+  60 0014 181C     		mov	r0, r3
+  61 0016 FFF7FEFF 		bl	UART_UartPutString
+  62              	.L4:
+  59:.\main.c      ****     for(;;)
+  60:.\main.c      ****     {
+  61:.\main.c      ****         /* Clear previous output */
+  62:.\main.c      **** //        LCD_ClearDisplay();
+  63:.\main.c      ****         
+  64:.\main.c      ****         /* Reset LCD Position */
+  65:.\main.c      **** //        LCD_Position(0u, 0u);
+  66:.\main.c      **** //        LCD_PrintString("Comparator Example");
+  67:.\main.c      ****         
+  68:.\main.c      ****         /* Move cursor to the start of the second row of LCD */
+  69:.\main.c      **** //        LCD_Position(1u, 0u);
+  70:.\main.c      ****         
+  71:.\main.c      ****         /* Check if voltage level on negative input of comparator
+  72:.\main.c      ****         * is greater then voltage level on positive input and
+  73:.\main.c      ****         * display suitable result message.
+  74:.\main.c      ****         */
+  75:.\main.c      ****         if(NEG_IS_GREATER == Comp_GetCompare())
+  63              		.loc 1 75 0
+  64 001a FFF7FEFF 		bl	Comp_GetCompare
+  65 001e 031C     		mov	r3, r0
+  66 0020 002B     		cmp	r3, #0
+  67 0022 04D1     		bne	.L2
+  76:.\main.c      ****         {
+  77:.\main.c      **** //            LCD_PrintString("Result : V1 < V2");
+  78:.\main.c      **** 			  UART_UartPutString("Result : V1 < V2\r\n");
+  68              		.loc 1 78 0
+  69 0024 084B     		ldr	r3, .L6+4
+  70 0026 181C     		mov	r0, r3
+  71 0028 FFF7FEFF 		bl	UART_UartPutString
+  72 002c 03E0     		b	.L3
+  73              	.L2:
+  79:.\main.c      ****         }
+  80:.\main.c      ****         else
+  81:.\main.c      ****         {
+  82:.\main.c      **** //            LCD_PrintString("Result : V1 > V2");
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 4
+
+
+  83:.\main.c      **** 			  UART_UartPutString("Result : V1 > V2\r\n");
+  74              		.loc 1 83 0
+  75 002e 074B     		ldr	r3, .L6+8
+  76 0030 181C     		mov	r0, r3
+  77 0032 FFF7FEFF 		bl	UART_UartPutString
+  78              	.L3:
+  84:.\main.c      ****         }
+  85:.\main.c      ****         
+  86:.\main.c      ****         /* Some delay required to make LCD output visible */
+  87:.\main.c      ****         CyDelay(400u);
+  79              		.loc 1 87 0
+  80 0036 C823     		mov	r3, #200
+  81 0038 5B00     		lsl	r3, r3, #1
+  82 003a 181C     		mov	r0, r3
+  83 003c FFF7FEFF 		bl	CyDelay
+  88:.\main.c      ****     }
+  84              		.loc 1 88 0
+  85 0040 EBE7     		b	.L4
+  86              	.L7:
+  87 0042 C046     		.align	2
+  88              	.L6:
+  89 0044 00000000 		.word	.LC0
+  90 0048 14000000 		.word	.LC2
+  91 004c 28000000 		.word	.LC4
+  92              		.cfi_endproc
+  93              	.LFE20:
+  94              		.size	main, .-main
+  95              		.text
+  96              	.Letext0:
+  97              		.section	.debug_loc,"",%progbits
+  98              	.Ldebug_loc0:
+  99              	.LLST0:
+ 100 0000 00000000 		.4byte	.LFB20
+ 101 0004 02000000 		.4byte	.LCFI0
+ 102 0008 0100     		.2byte	0x1
+ 103 000a 5D       		.byte	0x5d
+ 104 000b 02000000 		.4byte	.LCFI0
+ 105 000f 04000000 		.4byte	.LCFI1
+ 106 0013 0200     		.2byte	0x2
+ 107 0015 7D       		.byte	0x7d
+ 108 0016 08       		.sleb128 8
+ 109 0017 04000000 		.4byte	.LCFI1
+ 110 001b 50000000 		.4byte	.LFE20
+ 111 001f 0200     		.2byte	0x2
+ 112 0021 77       		.byte	0x77
+ 113 0022 08       		.sleb128 8
+ 114 0023 00000000 		.4byte	0x0
+ 115 0027 00000000 		.4byte	0x0
+ 116              		.section	.debug_info
+ 117 0000 98000000 		.4byte	0x98
+ 118 0004 0200     		.2byte	0x2
+ 119 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 120 000a 04       		.byte	0x4
+ 121 000b 01       		.uleb128 0x1
+ 122 000c 57000000 		.4byte	.LASF12
+ 123 0010 01       		.byte	0x1
+ 124 0011 FF000000 		.4byte	.LASF13
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 5
+
+
+ 125 0015 63000000 		.4byte	.LASF14
+ 126 0019 00000000 		.4byte	0x0
+ 127 001d 00000000 		.4byte	0x0
+ 128 0021 00000000 		.4byte	.Ldebug_ranges0+0x0
+ 129 0025 00000000 		.4byte	.Ldebug_line0
+ 130 0029 02       		.uleb128 0x2
+ 131 002a 01       		.byte	0x1
+ 132 002b 06       		.byte	0x6
+ 133 002c ED000000 		.4byte	.LASF0
+ 134 0030 02       		.uleb128 0x2
+ 135 0031 01       		.byte	0x1
+ 136 0032 08       		.byte	0x8
+ 137 0033 1B000000 		.4byte	.LASF1
+ 138 0037 02       		.uleb128 0x2
+ 139 0038 02       		.byte	0x2
+ 140 0039 05       		.byte	0x5
+ 141 003a C9000000 		.4byte	.LASF2
+ 142 003e 02       		.uleb128 0x2
+ 143 003f 02       		.byte	0x2
+ 144 0040 07       		.byte	0x7
+ 145 0041 DA000000 		.4byte	.LASF3
+ 146 0045 02       		.uleb128 0x2
+ 147 0046 04       		.byte	0x4
+ 148 0047 05       		.byte	0x5
+ 149 0048 C0000000 		.4byte	.LASF4
+ 150 004c 02       		.uleb128 0x2
+ 151 004d 04       		.byte	0x4
+ 152 004e 07       		.byte	0x7
+ 153 004f 2E000000 		.4byte	.LASF5
+ 154 0053 02       		.uleb128 0x2
+ 155 0054 08       		.byte	0x8
+ 156 0055 05       		.byte	0x5
+ 157 0056 00000000 		.4byte	.LASF6
+ 158 005a 02       		.uleb128 0x2
+ 159 005b 08       		.byte	0x8
+ 160 005c 07       		.byte	0x7
+ 161 005d 40000000 		.4byte	.LASF7
+ 162 0061 03       		.uleb128 0x3
+ 163 0062 04       		.byte	0x4
+ 164 0063 05       		.byte	0x5
+ 165 0064 696E7400 		.ascii	"int\000"
+ 166 0068 02       		.uleb128 0x2
+ 167 0069 04       		.byte	0x4
+ 168 006a 07       		.byte	0x7
+ 169 006b 0E000000 		.4byte	.LASF8
+ 170 006f 02       		.uleb128 0x2
+ 171 0070 04       		.byte	0x4
+ 172 0071 04       		.byte	0x4
+ 173 0072 F9000000 		.4byte	.LASF9
+ 174 0076 02       		.uleb128 0x2
+ 175 0077 08       		.byte	0x8
+ 176 0078 04       		.byte	0x4
+ 177 0079 D3000000 		.4byte	.LASF10
+ 178 007d 02       		.uleb128 0x2
+ 179 007e 01       		.byte	0x1
+ 180 007f 08       		.byte	0x8
+ 181 0080 BB000000 		.4byte	.LASF11
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 6
+
+
+ 182 0084 04       		.uleb128 0x4
+ 183 0085 04       		.byte	0x4
+ 184 0086 07       		.byte	0x7
+ 185 0087 05       		.uleb128 0x5
+ 186 0088 01       		.byte	0x1
+ 187 0089 29000000 		.4byte	.LASF15
+ 188 008d 01       		.byte	0x1
+ 189 008e 2D       		.byte	0x2d
+ 190 008f 00000000 		.4byte	.LFB20
+ 191 0093 50000000 		.4byte	.LFE20
+ 192 0097 00000000 		.4byte	.LLST0
+ 193 009b 00       		.byte	0x0
+ 194              		.section	.debug_abbrev
+ 195 0000 01       		.uleb128 0x1
+ 196 0001 11       		.uleb128 0x11
+ 197 0002 01       		.byte	0x1
+ 198 0003 25       		.uleb128 0x25
+ 199 0004 0E       		.uleb128 0xe
+ 200 0005 13       		.uleb128 0x13
+ 201 0006 0B       		.uleb128 0xb
+ 202 0007 03       		.uleb128 0x3
+ 203 0008 0E       		.uleb128 0xe
+ 204 0009 1B       		.uleb128 0x1b
+ 205 000a 0E       		.uleb128 0xe
+ 206 000b 11       		.uleb128 0x11
+ 207 000c 01       		.uleb128 0x1
+ 208 000d 52       		.uleb128 0x52
+ 209 000e 01       		.uleb128 0x1
+ 210 000f 55       		.uleb128 0x55
+ 211 0010 06       		.uleb128 0x6
+ 212 0011 10       		.uleb128 0x10
+ 213 0012 06       		.uleb128 0x6
+ 214 0013 00       		.byte	0x0
+ 215 0014 00       		.byte	0x0
+ 216 0015 02       		.uleb128 0x2
+ 217 0016 24       		.uleb128 0x24
+ 218 0017 00       		.byte	0x0
+ 219 0018 0B       		.uleb128 0xb
+ 220 0019 0B       		.uleb128 0xb
+ 221 001a 3E       		.uleb128 0x3e
+ 222 001b 0B       		.uleb128 0xb
+ 223 001c 03       		.uleb128 0x3
+ 224 001d 0E       		.uleb128 0xe
+ 225 001e 00       		.byte	0x0
+ 226 001f 00       		.byte	0x0
+ 227 0020 03       		.uleb128 0x3
+ 228 0021 24       		.uleb128 0x24
+ 229 0022 00       		.byte	0x0
+ 230 0023 0B       		.uleb128 0xb
+ 231 0024 0B       		.uleb128 0xb
+ 232 0025 3E       		.uleb128 0x3e
+ 233 0026 0B       		.uleb128 0xb
+ 234 0027 03       		.uleb128 0x3
+ 235 0028 08       		.uleb128 0x8
+ 236 0029 00       		.byte	0x0
+ 237 002a 00       		.byte	0x0
+ 238 002b 04       		.uleb128 0x4
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 7
+
+
+ 239 002c 24       		.uleb128 0x24
+ 240 002d 00       		.byte	0x0
+ 241 002e 0B       		.uleb128 0xb
+ 242 002f 0B       		.uleb128 0xb
+ 243 0030 3E       		.uleb128 0x3e
+ 244 0031 0B       		.uleb128 0xb
+ 245 0032 00       		.byte	0x0
+ 246 0033 00       		.byte	0x0
+ 247 0034 05       		.uleb128 0x5
+ 248 0035 2E       		.uleb128 0x2e
+ 249 0036 00       		.byte	0x0
+ 250 0037 3F       		.uleb128 0x3f
+ 251 0038 0C       		.uleb128 0xc
+ 252 0039 03       		.uleb128 0x3
+ 253 003a 0E       		.uleb128 0xe
+ 254 003b 3A       		.uleb128 0x3a
+ 255 003c 0B       		.uleb128 0xb
+ 256 003d 3B       		.uleb128 0x3b
+ 257 003e 0B       		.uleb128 0xb
+ 258 003f 11       		.uleb128 0x11
+ 259 0040 01       		.uleb128 0x1
+ 260 0041 12       		.uleb128 0x12
+ 261 0042 01       		.uleb128 0x1
+ 262 0043 40       		.uleb128 0x40
+ 263 0044 06       		.uleb128 0x6
+ 264 0045 00       		.byte	0x0
+ 265 0046 00       		.byte	0x0
+ 266 0047 00       		.byte	0x0
+ 267              		.section	.debug_pubnames,"",%progbits
+ 268 0000 17000000 		.4byte	0x17
+ 269 0004 0200     		.2byte	0x2
+ 270 0006 00000000 		.4byte	.Ldebug_info0
+ 271 000a 9C000000 		.4byte	0x9c
+ 272 000e 87000000 		.4byte	0x87
+ 273 0012 6D61696E 		.ascii	"main\000"
+ 273      00
+ 274 0017 00000000 		.4byte	0x0
+ 275              		.section	.debug_aranges,"",%progbits
+ 276 0000 1C000000 		.4byte	0x1c
+ 277 0004 0200     		.2byte	0x2
+ 278 0006 00000000 		.4byte	.Ldebug_info0
+ 279 000a 04       		.byte	0x4
+ 280 000b 00       		.byte	0x0
+ 281 000c 0000     		.2byte	0x0
+ 282 000e 0000     		.2byte	0x0
+ 283 0010 00000000 		.4byte	.LFB20
+ 284 0014 50000000 		.4byte	.LFE20-.LFB20
+ 285 0018 00000000 		.4byte	0x0
+ 286 001c 00000000 		.4byte	0x0
+ 287              		.section	.debug_ranges,"",%progbits
+ 288              	.Ldebug_ranges0:
+ 289 0000 00000000 		.4byte	.Ltext0
+ 290 0004 00000000 		.4byte	.Letext0
+ 291 0008 00000000 		.4byte	.LFB20
+ 292 000c 50000000 		.4byte	.LFE20
+ 293 0010 00000000 		.4byte	0x0
+ 294 0014 00000000 		.4byte	0x0
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 8
+
+
+ 295              		.section	.debug_str,"MS",%progbits,1
+ 296              	.LASF6:
+ 297 0000 6C6F6E67 		.ascii	"long long int\000"
+ 297      206C6F6E 
+ 297      6720696E 
+ 297      7400
+ 298              	.LASF8:
+ 299 000e 756E7369 		.ascii	"unsigned int\000"
+ 299      676E6564 
+ 299      20696E74 
+ 299      00
+ 300              	.LASF1:
+ 301 001b 756E7369 		.ascii	"unsigned char\000"
+ 301      676E6564 
+ 301      20636861 
+ 301      7200
+ 302              	.LASF15:
+ 303 0029 6D61696E 		.ascii	"main\000"
+ 303      00
+ 304              	.LASF5:
+ 305 002e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 305      20756E73 
+ 305      69676E65 
+ 305      6420696E 
+ 305      7400
+ 306              	.LASF7:
+ 307 0040 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 307      206C6F6E 
+ 307      6720756E 
+ 307      7369676E 
+ 307      65642069 
+ 308              	.LASF12:
+ 309 0057 474E5520 		.ascii	"GNU C 4.4.1\000"
+ 309      4320342E 
+ 309      342E3100 
+ 310              	.LASF14:
+ 311 0063 433A5C55 		.ascii	"C:\\Users\\wbz\\Desktop\\PSoC 4\\Comparator_PSoC4_E"
+ 311      73657273 
+ 311      5C77627A 
+ 311      5C446573 
+ 311      6B746F70 
+ 312 0091 78616D70 		.ascii	"xample01\\Comparator_PSoC4_Example01.cydsn\000"
+ 312      6C653031 
+ 312      5C436F6D 
+ 312      70617261 
+ 312      746F725F 
+ 313              	.LASF11:
+ 314 00bb 63686172 		.ascii	"char\000"
+ 314      00
+ 315              	.LASF4:
+ 316 00c0 6C6F6E67 		.ascii	"long int\000"
+ 316      20696E74 
+ 316      00
+ 317              	.LASF2:
+ 318 00c9 73686F72 		.ascii	"short int\000"
+ 318      7420696E 
+ 318      7400
+ARM GAS  C:\Users\wbz\AppData\Local\Temp\ccvxJ3wL.s 			page 9
+
+
+ 319              	.LASF10:
+ 320 00d3 646F7562 		.ascii	"double\000"
+ 320      6C6500
+ 321              	.LASF3:
+ 322 00da 73686F72 		.ascii	"short unsigned int\000"
+ 322      7420756E 
+ 322      7369676E 
+ 322      65642069 
+ 322      6E7400
+ 323              	.LASF0:
+ 324 00ed 7369676E 		.ascii	"signed char\000"
+ 324      65642063 
+ 324      68617200 
+ 325              	.LASF9:
+ 326 00f9 666C6F61 		.ascii	"float\000"
+ 326      7400
+ 327              	.LASF13:
+ 328 00ff 2E5C6D61 		.ascii	".\\main.c\000"
+ 328      696E2E63 
+ 328      00
+ 329              		.ident	"GCC: (Sourcery G++ Lite 2010q1-188) 4.4.1"
